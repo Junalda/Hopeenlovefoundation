@@ -1,0 +1,375 @@
+/* ============================================================
+   Hope & Love Foundation — Design System
+   Brand language extracted from the foundation logo:
+   royal purple + warm gold on light, editorial neutrals.
+   ============================================================ */
+
+:root {
+  /* Brand — sampled from the logo */
+  --purple: #8a2b88;
+  --purple-600: #7a2578;
+  --purple-700: #641f63;
+  --purple-900: #3c163b;
+  --gold: #f2b233;
+  --gold-600: #e09e1e;
+  --gold-700: #b97f14;
+
+  /* Neutrals — warm, faint purple undertone */
+  --ink: #1b1420;
+  --ink-2: #4a4551;
+  --muted: #726c79;
+  --bg: #ffffff;
+  --bg-soft: #fbf8fb;
+  --bg-soft-2: #f5eef4;
+  --line: rgba(27, 20, 32, 0.1);
+  --line-strong: rgba(27, 20, 32, 0.16);
+  --card: #ffffff;
+
+  /* Effects */
+  --shadow-sm: 0 1px 2px rgba(27, 20, 32, 0.04), 0 2px 8px rgba(27, 20, 32, 0.04);
+  --shadow-md: 0 4px 12px rgba(27, 20, 32, 0.06), 0 12px 34px rgba(27, 20, 32, 0.07);
+  --shadow-lg: 0 10px 30px rgba(60, 22, 59, 0.1), 0 30px 70px rgba(60, 22, 59, 0.12);
+  --shadow-gold: 0 6px 22px rgba(224, 158, 30, 0.32);
+  --shadow-purple: 0 8px 26px rgba(138, 43, 136, 0.28);
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --maxw: 1200px;
+  --maxw-narrow: 820px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(4.5rem, 9vw, 8.5rem);
+
+  --nav-h: 68px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: "New York", "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    Georgia, "Times New Roman", serif;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 12px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.06;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 1000;
+  background: var(--purple);
+  color: #fff;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: top 0.2s var(--ease);
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--purple));
+}
+.eyebrow.center {
+  justify-content: center;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.6vw, 3.35rem);
+  margin-top: 1rem;
+}
+
+.lead {
+  font-size: clamp(1.08rem, 1.7vw, 1.35rem);
+  line-height: 1.55;
+  color: var(--ink-2);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  --btn-bg: var(--purple);
+  --btn-fg: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+    background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+  will-change: transform;
+}
+.btn svg {
+  width: 1.05em;
+  height: 1.05em;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--gold {
+  --btn-bg: var(--gold);
+  --btn-fg: #3a2a06;
+  box-shadow: var(--shadow-gold);
+}
+.btn--gold:hover {
+  --btn-bg: #ffbf3f;
+  box-shadow: 0 10px 30px rgba(224, 158, 30, 0.42);
+}
+
+.btn--purple {
+  --btn-bg: var(--purple);
+  --btn-fg: #fff;
+  box-shadow: var(--shadow-purple);
+}
+.btn--purple:hover {
+  --btn-bg: var(--purple-600);
+  box-shadow: 0 12px 32px rgba(138, 43, 136, 0.36);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  border-color: var(--line-strong);
+}
+.btn--ghost:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+  background: rgba(138, 43, 136, 0.04);
+}
+
+.btn--light {
+  --btn-bg: #fff;
+  --btn-fg: var(--purple-700);
+  box-shadow: var(--shadow-md);
+}
+.btn--light:hover {
+  --btn-bg: #fff;
+}
+
+.btn--on-dark.btn--ghost {
+  --btn-fg: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.btn--on-dark.btn--ghost:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn--lg {
+  padding: 1.1rem 2rem;
+  font-size: 1.08rem;
+}
+
+/* Inline text link with arrow */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--purple);
+  transition: gap 0.3s var(--ease);
+}
+.arrow-link svg {
+  width: 1em;
+  height: 1em;
+  transition: transform 0.3s var(--ease);
+}
+.arrow-link:hover {
+  gap: 0.55rem;
+}
+.arrow-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* Gold text highlight */
+.hl {
+  color: var(--purple);
+}
+.hl-gold {
+  color: var(--gold-700);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn:hover {
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Section eyebrow/heading block used by many sections */
+.head {
+  max-width: 720px;
+}
+.head.center {
+  margin-inline: auto;
+  text-align: center;
+}
+.head .lead {
+  margin-top: 1.1rem;
+}
+
+/* visually hidden */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

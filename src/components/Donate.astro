@@ -1,0 +1,301 @@
+---
+import { donation } from "../config";
+const { gofundmeUrl, bank } = donation;
+const hasGofundme = gofundmeUrl.trim().length > 0;
+const hasIban = bank.iban.trim().length > 0;
+const hasBic = bank.bic.trim().length > 0;
+---
+
+<section class="donate section" id="donate">
+  <div class="container">
+    <div class="head center">
+      <p class="eyebrow center reveal">Donate</p>
+      <h2 class="section-title reveal" style="--reveal-delay:60ms">
+        Help us create a day they will never forget.
+      </h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        Your contribution helps us create experiences where children feel seen, valued,
+        encouraged and loved.
+      </p>
+    </div>
+
+    <div class="donate__grid">
+      <!-- Option 1 — Online -->
+      <article class="donate__card donate__card--online reveal">
+        <div class="donate__badge">Option 1</div>
+        <h3 class="donate__card-title">Donate online</h3>
+        <p class="donate__card-copy">
+          The fastest way to give. Support our campaign securely through GoFundMe and
+          share it with others.
+        </p>
+
+        <ul class="donate__amounts" aria-hidden="true">
+          <li>€25</li>
+          <li>€50</li>
+          <li>€100+</li>
+        </ul>
+
+        {
+          hasGofundme ? (
+            <a
+              href={gofundmeUrl}
+              class="btn btn--gold btn--lg donate__main-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Donate via GoFundMe
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          ) : (
+            <div class="donate__pending">
+              <span class="btn btn--gold btn--lg donate__main-btn is-disabled" aria-disabled="true">
+                Donate via GoFundMe
+              </span>
+              <p class="donate__note">
+                <span class="donate__dot"></span>Campaign link coming soon — check back shortly.
+              </p>
+            </div>
+          )
+        }
+      </article>
+
+      <!-- Option 2 — Direct -->
+      <article class="donate__card donate__card--bank reveal" style="--reveal-delay:80ms">
+        <div class="donate__badge donate__badge--purple">Option 2</div>
+        <h3 class="donate__card-title">Donate directly</h3>
+        <p class="donate__card-copy">
+          Prefer a bank transfer? Give directly to the foundation using the details below.
+        </p>
+
+        <dl class="bank">
+          <div class="bank__row">
+            <dt>Account holder</dt>
+            <dd>{bank.accountHolder}</dd>
+          </div>
+          <div class="bank__row">
+            <dt>IBAN</dt>
+            <dd>
+              {
+                hasIban ? (
+                  <div class="bank__iban">
+                    <code>{bank.iban}</code>
+                    <button class="bank__copy" data-copy={bank.iban} type="button" aria-label="Copy IBAN">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.7"/></svg>
+                      <span data-copy-label>Copy</span>
+                    </button>
+                  </div>
+                ) : (
+                  <span class="bank__pending">To be confirmed</span>
+                )
+              }
+            </dd>
+          </div>
+          {
+            (hasBic || !hasIban) && (
+              <div class="bank__row">
+                <dt>BIC / SWIFT</dt>
+                <dd>
+                  {hasBic ? <code>{bank.bic}</code> : <span class="bank__pending">To be confirmed</span>}
+                </dd>
+              </div>
+            )
+          }
+        </dl>
+        <p class="donate__note donate__note--muted">
+          Please reference <strong>&ldquo;Curaçao 2026&rdquo;</strong> with your gift.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .donate {
+    background: var(--bg);
+  }
+  .donate__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.2rem, 2.5vw, 1.8rem);
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .donate__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.8rem, 3.5vw, 2.6rem);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--line);
+    background: #fff;
+    box-shadow: var(--shadow-md);
+  }
+  .donate__card--online {
+    background: linear-gradient(165deg, #fffdf7, #fff8ea);
+    border-color: rgba(242, 178, 51, 0.3);
+  }
+
+  .donate__badge {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+    background: rgba(242, 178, 51, 0.16);
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 1.1rem;
+  }
+  .donate__badge--purple {
+    color: var(--purple);
+    background: rgba(138, 43, 136, 0.09);
+  }
+
+  .donate__card-title {
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+  }
+  .donate__card-copy {
+    margin-top: 0.7rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .donate__amounts {
+    display: flex;
+    gap: 0.6rem;
+    margin: 1.5rem 0;
+  }
+  .donate__amounts li {
+    flex: 1;
+    text-align: center;
+    padding: 0.7rem 0.4rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--gold-700);
+    background: #fff;
+    border: 1px solid rgba(242, 178, 51, 0.35);
+    border-radius: var(--radius-sm);
+  }
+
+  .donate__main-btn {
+    width: 100%;
+    margin-top: auto;
+  }
+  .btn.is-disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  .donate__pending {
+    margin-top: auto;
+  }
+
+  .donate__note {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.85rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .donate__note--muted {
+    margin-top: 1.2rem;
+  }
+  .donate__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex: none;
+  }
+
+  /* Bank detail component */
+  .bank {
+    margin: 1.5rem 0 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .bank__row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .bank__row:last-child {
+    border-bottom: none;
+  }
+  .bank__row dt {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .bank__row dd {
+    margin: 0;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .bank__row code {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .bank__iban {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .bank__copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--purple);
+    background: rgba(138, 43, 136, 0.07);
+    border: 1px solid rgba(138, 43, 136, 0.15);
+    border-radius: 999px;
+    transition: background 0.2s var(--ease), color 0.2s var(--ease);
+  }
+  .bank__copy svg {
+    width: 15px;
+    height: 15px;
+  }
+  .bank__copy:hover {
+    background: rgba(138, 43, 136, 0.12);
+  }
+  .bank__copy.is-copied {
+    color: #1c7a3f;
+    background: rgba(28, 122, 63, 0.1);
+    border-color: rgba(28, 122, 63, 0.25);
+  }
+  .bank__pending {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: rgba(27, 20, 32, 0.05);
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  @media (max-width: 820px) {
+    .donate__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 420px) {
+    .bank__row {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

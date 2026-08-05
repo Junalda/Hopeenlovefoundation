@@ -1,0 +1,139 @@
+---
+import { site, contact } from "../config";
+const year = 2026;
+const nav = [
+  { href: "#mission", label: "Mission" },
+  { href: "#story", label: "Our Story" },
+  { href: "#next-mission", label: "Next Mission" },
+  { href: "#leadership", label: "Leadership" },
+  { href: "#donate", label: "Donate" },
+  { href: "#contact", label: "Contact" },
+];
+const hasEmail = contact.email.trim().length > 0;
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <div class="footer__mark" aria-hidden="true">
+        <svg viewBox="0 0 64 40" fill="none">
+          <path d="M2 24 h10 l3.4 -12 4.6 22 3.8 -14 2.8 6 H40"
+            stroke="var(--gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M32 37 C22 29 15 23 15 16.5 C15 12 18.4 9 22.6 9 C26 9 29 11.2 32 15 C35 11.2 38 9 41.4 9 C45.6 9 49 12 49 16.5 C49 23 42 29 32 37 Z"
+            fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <p class="footer__name">Hope &amp; Love Foundation</p>
+        <p class="footer__slogan">{site.slogan}</p>
+      </div>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="footer__cta">
+      <a href="#donate" class="btn btn--gold">Donate Now</a>
+      {hasEmail && <a href={`mailto:${contact.email}`} class="footer__email">{contact.email}</a>}
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>&copy; {year} {site.legalName}. All rights reserved.</p>
+    <p class="footer__verse">&ldquo;The greatest of these is love.&rdquo; &middot; 1 Corinthians 13:13</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #17121c;
+    color: rgba(255, 255, 255, 0.72);
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+    padding-bottom: 2rem;
+  }
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr auto;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer__mark {
+    flex: none;
+    width: 58px;
+    height: 40px;
+  }
+  .footer__mark svg {
+    width: 100%;
+    height: 100%;
+  }
+  .footer__name {
+    font-size: 1.15rem;
+    font-weight: 650;
+    color: #fff;
+  }
+  .footer__slogan {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 0.15rem;
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+  }
+  .footer__nav a {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.72);
+    transition: color 0.2s var(--ease);
+  }
+  .footer__nav a:hover {
+    color: #fff;
+  }
+
+  .footer__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .footer__email {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .footer__email:hover {
+    color: #fff;
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .footer__verse {
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+
+  @media (max-width: 760px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+    }
+    .footer__bottom {
+      flex-direction: column;
+    }
+  }
+</style>

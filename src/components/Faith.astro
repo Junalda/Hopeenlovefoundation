@@ -1,0 +1,77 @@
+---
+// Faith — authentic and elegant, not a church website.
+---
+
+<section class="faith section" aria-label="Our foundation of faith">
+  <div class="container faith__inner reveal">
+    <p class="faith__eyebrow">Our Foundation</p>
+    <p class="faith__statement">
+      We believe every child is created with <span>value, purpose and dignity</span> —
+      and we seek to show the love of Jesus through the way we serve children and
+      families.
+    </p>
+    <p class="faith__verse">
+      &ldquo;And now these three remain: faith, hope and love. But the greatest of
+      these is love.&rdquo;
+      <cite>1 Corinthians 13:13</cite>
+    </p>
+  </div>
+</section>
+
+<style>
+  .faith {
+    background: linear-gradient(160deg, var(--purple-900), var(--purple-700));
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .faith::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(50% 80% at 15% 0%, rgba(242, 178, 51, 0.18), transparent 60%),
+      radial-gradient(45% 70% at 100% 100%, rgba(242, 178, 51, 0.1), transparent 60%);
+    pointer-events: none;
+  }
+  .faith__inner {
+    position: relative;
+    max-width: 900px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .faith__eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+  .faith__statement {
+    font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.32;
+    letter-spacing: -0.015em;
+  }
+  .faith__statement span {
+    color: var(--gold);
+  }
+  .faith__verse {
+    margin-top: 2rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.5;
+  }
+  .faith__verse cite {
+    display: block;
+    margin-top: 0.7rem;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+</style>

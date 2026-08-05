@@ -1,0 +1,186 @@
+---
+import { founder, board } from "../config";
+
+function initials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
+}
+---
+
+<section class="lead-sec section" id="leadership">
+  <div class="container">
+    <div class="head center">
+      <p class="eyebrow center reveal">Leadership</p>
+      <h2 class="section-title reveal" style="--reveal-delay:60ms">
+        Meet the people behind the mission
+      </h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        A dedicated board guiding Hope &amp; Love Foundation with care, integrity and
+        shared conviction.
+      </p>
+    </div>
+
+    <div class="lead-sec__wrap">
+      <!-- Founder -->
+      <article class="founder-card reveal">
+        <div class="founder-card__photo">
+          <img
+            src="/images/founder-1400.jpg"
+            srcset="/images/founder-900.jpg 900w, /images/founder-1400.jpg 1400w"
+            sizes="(max-width: 760px) 92vw, 360px"
+            width="1400"
+            height="933"
+            alt="Esther Macnack, founder of Hope & Love Foundation"
+            loading="lazy"
+          />
+        </div>
+        <div class="founder-card__body">
+          <span class="founder-card__tag">Founder</span>
+          <h3 class="founder-card__name">{founder.name}</h3>
+          <p class="founder-card__role">{founder.role}</p>
+          <p class="founder-card__quote">
+            &ldquo;Every child deserves to know they are valuable, loved and never
+            alone.&rdquo;
+          </p>
+        </div>
+      </article>
+
+      <!-- Board -->
+      <div class="board">
+        {
+          board.map((m, i) => (
+            <article class="board__card reveal" style={`--reveal-delay:${i * 60}ms`}>
+              <span class="board__avatar" aria-hidden="true">{initials(m.name)}</span>
+              <div>
+                <h3 class="board__name">{m.name}</h3>
+                <p class="board__role">{m.role}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lead-sec {
+    background: var(--bg);
+  }
+  .lead-sec__wrap {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(1.5rem, 3.5vw, 2.5rem);
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+    align-items: stretch;
+  }
+
+  .founder-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+    background: #fff;
+  }
+  .founder-card__photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .founder-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .founder-card__body {
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+  }
+  .founder-card__tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+  }
+  .founder-card__name {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-top: 0.5rem;
+  }
+  .founder-card__role {
+    color: var(--purple);
+    font-weight: 600;
+    margin-top: 0.2rem;
+  }
+  .founder-card__quote {
+    margin-top: 1.1rem;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.9rem, 2vw, 1.2rem);
+  }
+  .board__card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, #fff, var(--bg-soft));
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
+      border-color 0.4s var(--ease);
+  }
+  .board__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(138, 43, 136, 0.16);
+  }
+  .board__avatar {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--purple), var(--purple-700));
+    letter-spacing: 0.02em;
+  }
+  .board__card:nth-child(even) .board__avatar {
+    background: linear-gradient(135deg, var(--gold), var(--gold-600));
+    color: #3a2a06;
+  }
+  .board__name {
+    font-size: 1.08rem;
+    line-height: 1.25;
+  }
+  .board__role {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 760px) {
+    .lead-sec__wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 440px) {
+    .board {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,242 @@
+---
+// Cinematic, typographic hero — brand gradient + heartbeat/heart motif.
+---
+
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__orb hero__orb--gold"></div>
+    <div class="hero__orb hero__orb--purple"></div>
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <p class="hero__eyebrow reveal">
+      <span class="hero__dot"></span>Hope &amp; Love Foundation
+    </p>
+
+    <h1 class="hero__title reveal" style="--reveal-delay: 60ms">
+      Helping children discover <span class="hero__accent">who they are</span>, what
+      they are worth, and that they <span class="hero__accent hero__accent--gold">belong</span>.
+    </h1>
+
+    <p class="hero__lead lead reveal" style="--reveal-delay: 140ms">
+      We exist to give children hope, strengthen identity and self-worth, and create
+      meaningful connections between children, families and their communities.
+    </p>
+
+    <div class="hero__cta reveal" style="--reveal-delay: 220ms">
+      <a href="#donate" class="btn btn--gold btn--lg">
+        Donate Now
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 21s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.5a4.3 4.3 0 0 1 7.5 3.3C19.5 16.4 12 21 12 21Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#mission" class="btn btn--ghost btn--lg">Discover Our Mission</a>
+    </div>
+
+    <!-- Heartbeat motif -->
+    <div class="hero__pulse reveal" style="--reveal-delay: 320ms" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="hero__pulse-svg">
+        <path
+          class="hero__pulse-line"
+          d="M0 60 H360 l26 -44 34 88 26 -70 20 40 h84
+             c40 0 40 -34 96 -34 34 0 52 22 68 44 16 -22 34 -44 68 -44 56 0 56 34 96 34 h84
+             l20 -40 26 70 34 -88 26 44 H1200"
+          fill="none"
+          stroke="url(#pulseGrad)"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <defs>
+          <linearGradient id="pulseGrad" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#f2b233" />
+            <stop offset="0.5" stop-color="#c76a72" />
+            <stop offset="1" stop-color="#8a2b88" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <a href="#pillars" class="hero__scroll" aria-label="Scroll to explore">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    padding-top: clamp(3.5rem, 8vw, 6.5rem);
+    padding-bottom: clamp(2rem, 5vw, 3.5rem);
+    overflow: hidden;
+    background: linear-gradient(180deg, #fdfbfd 0%, #fbf6fa 46%, #ffffff 100%);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .hero__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.5;
+  }
+  .hero__orb--gold {
+    width: 42vw;
+    height: 42vw;
+    max-width: 560px;
+    max-height: 560px;
+    top: -12%;
+    left: -8%;
+    background: radial-gradient(circle, rgba(242, 178, 51, 0.5), transparent 70%);
+  }
+  .hero__orb--purple {
+    width: 46vw;
+    height: 46vw;
+    max-width: 640px;
+    max-height: 640px;
+    top: -6%;
+    right: -12%;
+    background: radial-gradient(circle, rgba(138, 43, 136, 0.32), transparent 70%);
+  }
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(27, 20, 32, 0.045) 1px, transparent 1px);
+    background-size: 30px 30px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+  }
+
+  .hero__inner {
+    text-align: center;
+    max-width: 940px;
+  }
+
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem 0.5rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: var(--shadow-sm);
+    font-size: 0.8rem;
+    font-weight: 650;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--purple-700);
+  }
+  .hero__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(242, 178, 51, 0.2);
+  }
+
+  .hero__title {
+    margin-top: 1.6rem;
+    font-size: clamp(2.5rem, 6.4vw, 5rem);
+    font-weight: 680;
+    letter-spacing: -0.03em;
+    line-height: 1.03;
+  }
+  .hero__accent {
+    color: var(--purple);
+  }
+  .hero__accent--gold {
+    color: var(--gold-700);
+  }
+
+  .hero__lead {
+    margin: 1.5rem auto 0;
+    max-width: 640px;
+  }
+
+  .hero__cta {
+    margin-top: 2.2rem;
+    display: flex;
+    gap: 0.85rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero__pulse {
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
+    width: 100%;
+  }
+  .hero__pulse-svg {
+    width: 100%;
+    height: clamp(60px, 9vw, 110px);
+    display: block;
+  }
+  .hero__pulse-line {
+    stroke-dasharray: 2600;
+    stroke-dashoffset: 2600;
+    animation: draw 2.6s var(--ease-out) 0.3s forwards;
+  }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .hero__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 1.2rem;
+    transform: translateX(-50%);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero__scroll svg {
+    width: 18px;
+    height: 18px;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(4px);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero__scroll {
+      display: none;
+    }
+    .hero__cta .btn {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__pulse-line {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+    .hero__scroll svg {
+      animation: none;
+    }
+  }
+</style>

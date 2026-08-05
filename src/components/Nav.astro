@@ -1,0 +1,249 @@
+---
+import { donation } from "../config";
+const links = [
+  { href: "#mission", label: "Mission" },
+  { href: "#story", label: "Our Story" },
+  { href: "#next-mission", label: "Next Mission" },
+  { href: "#leadership", label: "Leadership" },
+];
+---
+
+<header class="nav" id="nav" data-nav>
+  <div class="nav__inner container">
+    <a href="#top" class="nav__brand" aria-label="Hope & Love Foundation — home">
+      <img
+        src="/images/logo-480.png"
+        srcset="/images/logo-480.png 480w, /images/logo-900.png 900w"
+        sizes="150px"
+        width="480"
+        height="330"
+        alt="Hope & Love Foundation"
+        class="nav__logo"
+        fetchpriority="high"
+      />
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => <a href={l.href} class="nav__link" data-navlink>{l.label}</a>)}
+    </nav>
+
+    <div class="nav__actions">
+      <a href="#donate" class="btn btn--purple nav__cta">Donate</a>
+      <button
+        class="nav__toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="mobile-menu" data-mobile-menu hidden>
+    <nav class="nav__mobile-links" aria-label="Mobile">
+      {links.map((l) => <a href={l.href} class="nav__mobile-link" data-mobile-link>{l.label}</a>)}
+      <a href="#donate" class="btn btn--purple btn--lg nav__mobile-cta" data-mobile-link>Donate Now</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+      box-shadow 0.3s var(--ease);
+  }
+  .nav.is-scrolled {
+    background: rgba(255, 255, 255, 0.86);
+    border-bottom-color: var(--line);
+    box-shadow: 0 1px 0 rgba(27, 20, 32, 0.02), 0 8px 24px rgba(27, 20, 32, 0.04);
+  }
+
+  .nav__inner {
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav__logo {
+    height: 42px;
+    width: auto;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+  }
+  .nav__link {
+    position: relative;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    border-radius: 999px;
+    transition: color 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .nav__link:hover {
+    color: var(--ink);
+    background: rgba(27, 20, 32, 0.04);
+  }
+  .nav__link.is-active {
+    color: var(--purple);
+  }
+
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .nav__cta {
+    padding: 0.62rem 1.25rem;
+    font-size: 0.95rem;
+    box-shadow: none;
+  }
+
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .nav__toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
+  }
+  .nav.is-open .nav__toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav.is-open .nav__toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav.is-open .nav__toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav__mobile {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .nav__mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem var(--gutter) 1.5rem;
+  }
+  .nav__mobile-link {
+    padding: 0.9rem 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 550;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .nav__mobile-cta {
+    margin-top: 1rem;
+    border-bottom: none;
+    width: 100%;
+  }
+
+  @media (max-width: 860px) {
+    .nav__links,
+    .nav__cta {
+      display: none;
+    }
+    .nav__toggle {
+      display: flex;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav,
+    .nav__toggle span {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector<HTMLElement>("[data-nav]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const mobileLinks = document.querySelectorAll<HTMLAnchorElement>("[data-mobile-link]");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-navlink]");
+
+  // Scrolled state
+  const onScroll = () => {
+    if (!nav) return;
+    nav.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Mobile menu open/close
+  const setMenu = (open: boolean) => {
+    if (!nav || !menu || !toggle) return;
+    nav.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    if (open) {
+      menu.hidden = false;
+    } else {
+      menu.hidden = true;
+    }
+  };
+  toggle?.addEventListener("click", () => setMenu(menu?.hidden ?? true));
+  mobileLinks.forEach((l) => l.addEventListener("click", () => setMenu(false)));
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenu(false);
+  });
+
+  // Active section highlight
+  const sections = Array.from(navLinks)
+    .map((l) => document.querySelector(l.getAttribute("href") || ""))
+    .filter(Boolean) as HTMLElement[];
+
+  if ("IntersectionObserver" in window && sections.length) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((l) =>
+              l.classList.toggle("is-active", l.getAttribute("href") === `#${id}`)
+            );
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
+</script>

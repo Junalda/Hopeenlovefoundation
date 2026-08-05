@@ -1,0 +1,92 @@
+---
+// Large emotional closing call to action.
+---
+
+<section class="final" aria-labelledby="final-title">
+  <div class="final__bg" aria-hidden="true">
+    <div class="final__orb"></div>
+    <svg class="final__pulse" viewBox="0 0 1200 100" preserveAspectRatio="none">
+      <path d="M0 50 H420 l24 -34 30 68 22 -50 18 30 h120 l24 -34 30 68 22 -50 18 30 H1200"
+        fill="none" stroke="rgba(242,178,51,0.35)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="container final__inner reveal">
+    <p class="final__eyebrow">Bringers of hope, carriers of love</p>
+    <h2 class="final__title" id="final-title">Every child deserves hope.</h2>
+    <p class="final__copy">
+      Help us create spaces where children can discover their worth, find their voice
+      and experience love.
+    </p>
+    <a href="#donate" class="btn btn--gold btn--lg final__btn">
+      Donate Now
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.5a4.3 4.3 0 0 1 7.5 3.3C19.5 16.4 12 21 12 21Z" fill="currentColor"/></svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .final {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(5rem, 11vw, 9rem);
+    background: linear-gradient(150deg, var(--purple-900) 0%, var(--purple) 55%, var(--purple-600) 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .final__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .final__orb {
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    max-width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242, 178, 51, 0.22), transparent 62%);
+    filter: blur(30px);
+  }
+  .final__pulse {
+    position: absolute;
+    bottom: 8%;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    opacity: 0.7;
+  }
+
+  .final__inner {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+  .final__eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .final__title {
+    font-size: clamp(2.4rem, 6.5vw, 4.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    color: #fff;
+  }
+  .final__copy {
+    margin: 1.3rem auto 0;
+    max-width: 540px;
+    font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .final__btn {
+    margin-top: 2.2rem;
+  }
+</style>

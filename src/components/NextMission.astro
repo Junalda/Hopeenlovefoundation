@@ -1,0 +1,178 @@
+---
+import { nextMission } from "../config";
+const experience = [
+  "Workshops",
+  "Creativity",
+  "Sports & games",
+  "Identity",
+  "Self-worth",
+  "Family connection",
+  "A warm meal",
+  "Gifts",
+  "Celebration",
+];
+---
+
+<section class="nm section" id="next-mission">
+  <div class="container">
+    <div class="nm__grid">
+      <figure class="nm__media reveal">
+        <img
+          src="/images/flyer-1100.jpg"
+          srcset="/images/flyer-700.jpg 700w, /images/flyer-1100.jpg 1100w"
+          sizes="(max-width: 900px) 92vw, 40vw"
+          width="1100"
+          height="1466"
+          alt="Hope & Love Foundation mission flyer — Curaçao, October 2026"
+          loading="lazy"
+        />
+      </figure>
+
+      <div class="nm__body">
+        <p class="eyebrow reveal">Next Mission</p>
+        <h2 class="nm__title reveal" style="--reveal-delay:60ms">{nextMission.title}</h2>
+        <p class="nm__pilot reveal" style="--reveal-delay:100ms">
+          {nextMission.eyebrow} — a day built entirely around children.
+        </p>
+
+        <div class="nm__meta reveal" style="--reveal-delay:140ms">
+          <div class="nm__meta-item">
+            <span class="nm__meta-label">Date</span>
+            <span class="nm__meta-value">{nextMission.date}</span>
+          </div>
+          <div class="nm__meta-item">
+            <span class="nm__meta-label">Location</span>
+            <span class="nm__meta-value">{nextMission.location}</span>
+          </div>
+          <div class="nm__meta-item">
+            <span class="nm__meta-label">Children</span>
+            <span class="nm__meta-value">{nextMission.childrenRange}</span>
+          </div>
+        </div>
+
+        <ul class="nm__chips reveal" style="--reveal-delay:180ms">
+          {experience.map((e) => <li class="nm__chip">{e}</li>)}
+        </ul>
+
+        <div class="nm__cta reveal" style="--reveal-delay:220ms">
+          <a href="#donate" class="btn btn--purple btn--lg">Support This Mission</a>
+          <a href="#donate" class="btn btn--ghost btn--lg">Donate Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nm {
+    background: linear-gradient(180deg, var(--bg-soft), #ffffff);
+  }
+  .nm__grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .nm__media {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transform: rotate(-1.4deg);
+    transition: transform 0.5s var(--ease);
+  }
+  .nm__media:hover {
+    transform: rotate(0deg);
+  }
+  .nm__media img {
+    width: 100%;
+    height: auto;
+  }
+
+  .nm__title {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    margin-top: 1rem;
+    background: linear-gradient(100deg, var(--purple), var(--gold-700));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .nm__pilot {
+    margin-top: 0.85rem;
+    font-size: 1.15rem;
+    color: var(--ink-2);
+  }
+
+  .nm__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.8rem;
+  }
+  .nm__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.85rem 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    min-width: 120px;
+  }
+  .nm__meta-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .nm__meta-value {
+    font-size: 1.1rem;
+    font-weight: 650;
+    color: var(--ink);
+  }
+
+  .nm__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.8rem;
+  }
+  .nm__chip {
+    font-size: 0.9rem;
+    font-weight: 550;
+    color: var(--purple-700);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(138, 43, 136, 0.06);
+    border: 1px solid rgba(138, 43, 136, 0.12);
+  }
+  .nm__chips .nm__chip:nth-child(3n + 2) {
+    color: var(--gold-700);
+    background: rgba(242, 178, 51, 0.12);
+    border-color: rgba(242, 178, 51, 0.22);
+  }
+
+  .nm__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2.2rem;
+  }
+
+  @media (max-width: 900px) {
+    .nm__grid {
+      grid-template-columns: 1fr;
+    }
+    .nm__media {
+      max-width: 420px;
+      margin-inline: auto;
+    }
+  }
+  @media (max-width: 520px) {
+    .nm__cta .btn {
+      width: 100%;
+    }
+  }
+</style>
