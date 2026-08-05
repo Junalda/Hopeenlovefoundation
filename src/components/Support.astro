@@ -26,18 +26,8 @@ const items = [
       {
         items.map((it, i) => (
           <article class="support__item reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
-            <span class="support__icon" aria-hidden="true">
-              {it.icon === "child" && <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M6 21v-1a6 6 0 0 1 12 0v1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>}
-              {it.icon === "book" && <svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5V5.5ZM20 5.5A1.5 1.5 0 0 0 18.5 4H13v15h5.5a1.5 1.5 0 0 1 1.5 1.5V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>}
-              {it.icon === "ball" && <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3v18" stroke="currentColor" stroke-width="1.4"/></svg>}
-              {it.icon === "meal" && <svg viewBox="0 0 24 24" fill="none"><path d="M6 3v8M6 11a2 2 0 0 0 2-2V3M6 11v10M18 3c-1.7 0-3 2-3 5s1.3 4 3 4v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>}
-              {it.icon === "gift" && <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="9" width="16" height="11" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M4 9h16M12 9v11M12 9S9 4 6.5 6 12 9 12 9Zm0 0s3-5 5.5-3S12 9 12 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>}
-              {it.icon === "globe" && <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3C9.5 5.5 9.5 18.5 12 21" stroke="currentColor" stroke-width="1.4"/></svg>}
-            </span>
-            <div>
-              <h3 class="support__item-title">{it.title}</h3>
-              <p class="support__item-body">{it.body}</p>
-            </div>
+            <h3 class="support__item-title">{it.title}</h3>
+            <p class="support__item-body">{it.body}</p>
           </article>
         ))
       }
@@ -56,38 +46,25 @@ const items = [
     margin-top: clamp(2.5rem, 5vw, 3.5rem);
   }
   .support__item {
-    display: flex;
-    gap: 1.1rem;
     padding: clamp(1.4rem, 2.5vw, 1.8rem);
     background: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
+    border-left: 3px solid rgba(138, 43, 136, 0.35);
     transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
       border-color 0.4s var(--ease);
+  }
+  .support__item:nth-child(even) {
+    border-left-color: rgba(242, 178, 51, 0.5);
   }
   .support__item:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
     border-color: rgba(138, 43, 136, 0.16);
+    border-left-color: var(--purple);
   }
-  .support__icon {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-    border-radius: 13px;
-    background: rgba(138, 43, 136, 0.08);
-    color: var(--purple);
-  }
-  .support__item:nth-child(even) .support__icon {
-    background: rgba(242, 178, 51, 0.16);
-    color: var(--gold-700);
-  }
-  .support__icon svg {
-    width: 24px;
-    height: 24px;
+  .support__item:nth-child(even):hover {
+    border-left-color: var(--gold);
   }
   .support__item-title {
     font-size: 1.15rem;
