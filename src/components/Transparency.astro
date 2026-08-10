@@ -6,6 +6,12 @@ import { useTranslations, type Lang } from "../i18n/ui";
 const { lang = "nl" } = Astro.props as { lang?: Lang };
 const tr = useTranslations(lang).transparency;
 const hrefs = ["", "", "", ""]; // Policy Plan, Annual Reports, Financial, Foundation
+// Temporarily hidden document cards (by index). 1 = Annual Reports, 2 = Financial
+// Information. Remove indices here to show them again.
+const hidden = [1, 2];
+const docs = tr.docs
+  .map((d, i) => ({ ...d, href: hrefs[i] ?? "" }))
+  .filter((_, i) => !hidden.includes(i));
 ---
 
 <section class="trans section" aria-labelledby="trans-title">
@@ -22,8 +28,8 @@ const hrefs = ["", "", "", ""]; // Policy Plan, Annual Reports, Financial, Found
 
     <div class="trans__grid">
       {
-        tr.docs.map((d, i) => {
-          const href = hrefs[i] ?? "";
+        docs.map((d, i) => {
+          const href = d.href;
           const available = href.trim().length > 0;
           const Tag = available ? "a" : "div";
           return (
@@ -58,7 +64,8 @@ const hrefs = ["", "", "", ""]; // Policy Plan, Annual Reports, Financial, Found
   }
   .trans__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 300px));
+    justify-content: center;
     gap: clamp(0.9rem, 2vw, 1.3rem);
     margin-top: clamp(2.5rem, 5vw, 3.5rem);
   }
@@ -120,14 +127,4 @@ const hrefs = ["", "", "", ""]; // Policy Plan, Annual Reports, Financial, Found
     height: 15px;
   }
 
-  @media (max-width: 900px) {
-    .trans__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 460px) {
-    .trans__grid {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
