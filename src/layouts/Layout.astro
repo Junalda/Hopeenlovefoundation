@@ -32,6 +32,11 @@ const jsonLd = {
   logo: new URL("/images/logo-900.png", site.url).href,
   areaServed: ["Curaçao", "Aruba", "Bonaire", "Suriname", "Netherlands"],
   founder: { "@type": "Person", name: "Esther Macnack" },
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "KvK",
+    value: site.kvk,
+  },
 };
 ---
 
