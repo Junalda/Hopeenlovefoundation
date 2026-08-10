@@ -35,7 +35,7 @@ export const contact = {
   email: 'info@hopelovefoundation.nl',
   phone: '+31 6 18 08 49 14', // 0031618084914
   social: {
-    instagram: '', // PLACEHOLDER — e.g. 'https://instagram.com/...'
+    instagram: 'https://www.instagram.com/hope_love_foundation',
     facebook: '', // PLACEHOLDER
     linkedin: '', // PLACEHOLDER
   },
