@@ -26,7 +26,7 @@ export const donation = {
   bank: {
     accountHolder: 'Stichting Hope & Love Foundation',
     iban: 'NL11 RABO 0175 3000 03',
-    bic: '', // PLACEHOLDER — BIC/SWIFT to be provided (optional)
+    bic: 'RABONL2U',
   },
 };
 
