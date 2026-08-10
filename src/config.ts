@@ -33,7 +33,7 @@ export const donation = {
 /** Contact details. Leave empty to render a "coming soon" state. */
 export const contact = {
   email: '', // PLACEHOLDER — official general email to be provided
-  phone: '', // PLACEHOLDER — optional
+  phone: '+31 6 18 08 49 14', // 0031618084914
   social: {
     instagram: '', // PLACEHOLDER — e.g. 'https://instagram.com/...'
     facebook: '', // PLACEHOLDER
