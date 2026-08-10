@@ -22,7 +22,7 @@ export const site = {
 export const donation = {
   // PLACEHOLDER — replace with the official GoFundMe campaign URL.
   // Flyer campaign: "Missie Curaçao 2026 – Hoop & Liefde in Actie".
-  gofundmeUrl: '', // e.g. 'https://www.gofundme.com/f/your-campaign'
+  gofundmeUrl: 'https://gofund.me/42303c937',
   bank: {
     accountHolder: 'Stichting Hope & Love Foundation',
     iban: 'NL11 RABO 0175 3000 03',
