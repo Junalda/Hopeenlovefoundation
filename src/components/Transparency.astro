@@ -3,15 +3,24 @@
 // "in preparation". No ANBI status, registration numbers or figures are invented.
 // Add a real URL to the matching hrefs entry to make a card live.
 import { useTranslations, type Lang } from "../i18n/ui";
+import { foundationInfo } from "../config";
 const { lang = "nl" } = Astro.props as { lang?: Lang };
 const tr = useTranslations(lang).transparency;
 const hrefs = ["", "", "", ""]; // Policy Plan, Annual Reports, Financial, Foundation
 // Temporarily hidden document cards (by index). 1 = Annual Reports, 2 = Financial
 // Information. Remove indices here to show them again.
 const hidden = [1, 2];
+// Index 3 (Foundation Information) renders live registration details.
+const INFO_INDEX = 3;
+const info = [
+  { label: tr.info.name, value: foundationInfo.legalName },
+  { label: tr.info.kvk, value: foundationInfo.kvk },
+  { label: tr.info.legalForm, value: tr.info.legalFormValue },
+  { label: tr.info.location, value: foundationInfo.address },
+];
 const docs = tr.docs
-  .map((d, i) => ({ ...d, href: hrefs[i] ?? "" }))
-  .filter((_, i) => !hidden.includes(i));
+  .map((d, i) => ({ ...d, href: hrefs[i] ?? "", index: i }))
+  .filter((d) => !hidden.includes(d.index));
 ---
 
 <section class="trans section" aria-labelledby="trans-title">
@@ -29,12 +38,13 @@ const docs = tr.docs
     <div class="trans__grid">
       {
         docs.map((d, i) => {
+          const isInfo = d.index === INFO_INDEX;
           const href = d.href;
           const available = href.trim().length > 0;
           const Tag = available ? "a" : "div";
           return (
             <Tag
-              class={`trans__card reveal${available ? " is-available" : ""}`}
+              class={`trans__card reveal${available ? " is-available" : ""}${isInfo ? " trans__card--info" : ""}`}
               style={`--reveal-delay:${(i % 4) * 60}ms`}
               {...(available ? { href, target: "_blank", rel: "noopener" } : {})}
             >
@@ -42,14 +52,29 @@ const docs = tr.docs
                 <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14a0 0 0 0 1 0 0H6a0 0 0 0 1 0 0V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v4h4M8.5 13h7M8.5 16.5h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
               </span>
               <h3 class="trans__card-title">{d.title}</h3>
-              <p class="trans__card-desc">{d.desc}</p>
-              <span class="trans__status">
-                {available ? (
-                  <>{tr.view}<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></>
+              {
+                isInfo ? (
+                  <dl class="trans__info">
+                    {info.map((row) => (
+                      <div class="trans__info-row">
+                        <dt>{row.label}</dt>
+                        <dd>{row.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 ) : (
-                  <>{tr.inPrep}</>
-                )}
-              </span>
+                  <>
+                    <p class="trans__card-desc">{d.desc}</p>
+                    <span class="trans__status">
+                      {available ? (
+                        <>{tr.view}<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></>
+                      ) : (
+                        <>{tr.inPrep}</>
+                      )}
+                    </span>
+                  </>
+                )
+              }
             </Tag>
           );
         })
@@ -125,6 +150,31 @@ const docs = tr.docs
   .trans__status svg {
     width: 15px;
     height: 15px;
+  }
+
+  .trans__info {
+    margin: 0.5rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .trans__info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .trans__info-row dt {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .trans__info-row dd {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
   }
 
 </style>

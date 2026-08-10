@@ -171,6 +171,13 @@ export const ui = {
       lead: "We doen dit met integriteit. Onze stichtingsdocumenten worden afgerond en hier gepubliceerd.",
       view: "Bekijk document",
       inPrep: "In voorbereiding",
+      info: {
+        name: "Naam",
+        kvk: "KvK-nummer",
+        legalForm: "Rechtsvorm",
+        legalFormValue: "Stichting",
+        location: "Vestiging",
+      },
       docs: [
         { title: "Beleidsplan", desc: "Onze visie, missie en meerjarenplan." },
         { title: "Jaarverslagen", desc: "Wat we deden en welke impact we maakten." },
@@ -348,6 +355,13 @@ export const ui = {
       lead: "We’re committed to doing this with integrity. Our foundation documents are being finalised and will be published here.",
       view: "View document",
       inPrep: "In preparation",
+      info: {
+        name: "Name",
+        kvk: "Chamber of Commerce (KvK)",
+        legalForm: "Legal form",
+        legalFormValue: "Foundation (Stichting)",
+        location: "Registered office",
+      },
       docs: [
         { title: "Policy Plan", desc: "Our vision, mission and multi-year plan." },
         { title: "Annual Reports", desc: "What we did and the impact we made." },

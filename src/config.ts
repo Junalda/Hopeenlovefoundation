@@ -58,3 +58,10 @@ export const board = [
   { name: 'Bianca Patricia Derveld-Macnack' },
   { name: 'Conor Peter Oisin Lont' },
 ];
+
+/** Official registration details (public KvK register). */
+export const foundationInfo = {
+  legalName: 'Stichting Hope & Love Foundation',
+  kvk: '42012653',
+  address: 'Beneluxlaan 668, 1363 DA Almere',
+};
