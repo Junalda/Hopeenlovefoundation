@@ -25,7 +25,7 @@ export const donation = {
   gofundmeUrl: '', // e.g. 'https://www.gofundme.com/f/your-campaign'
   bank: {
     accountHolder: 'Stichting Hope & Love Foundation',
-    iban: '', // PLACEHOLDER — official IBAN to be provided
+    iban: 'NL11 RABO 0175 3000 03',
     bic: '', // PLACEHOLDER — BIC/SWIFT to be provided (optional)
   },
 };
