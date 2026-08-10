@@ -1,5 +1,8 @@
 ---
 // Large emotional closing call to action.
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const f = useTranslations(lang).final;
 ---
 
 <section class="final" aria-labelledby="final-title">
@@ -12,14 +15,11 @@
   </div>
 
   <div class="container final__inner reveal">
-    <p class="final__eyebrow">Bringers of hope, carriers of love</p>
-    <h2 class="final__title" id="final-title">Every child deserves hope.</h2>
-    <p class="final__copy">
-      Help us create spaces where children can discover their worth, find their voice
-      and experience love.
-    </p>
+    <p class="final__eyebrow">{f.eyebrow}</p>
+    <h2 class="final__title" id="final-title">{f.title}</h2>
+    <p class="final__copy">{f.copy}</p>
     <a href="#donate" class="btn btn--gold btn--lg final__btn">
-      Donate Now
+      {f.donate}
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.5a4.3 4.3 0 0 1 7.5 3.3C19.5 16.4 12 21 12 21Z" fill="currentColor"/></svg>
     </a>
   </div>

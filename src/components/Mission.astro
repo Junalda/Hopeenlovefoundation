@@ -1,37 +1,31 @@
 ---
-const activities = [
-  { title: "Workshops", body: "Identity, self-confidence and daring to dream.", icon: "book" },
-  { title: "Sports & games", body: "Play, teamwork and the joy of moving together.", icon: "ball" },
-  { title: "Creativity", body: "Art, music and craft that let children express who they are.", icon: "brush" },
-  { title: "Self-image", body: "Building a healthy, hopeful sense of self.", icon: "mirror" },
-  { title: "Parent & child", body: "Strengthening and restoring the family bond.", icon: "family" },
-  { title: "Education", body: "Encouraging learning, curiosity and growth.", icon: "grad" },
-];
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
 ---
 
 <section class="mission section" id="mission">
   <div class="container">
     <div class="mission__top">
       <div class="head">
-        <p class="eyebrow reveal">Our Mission</p>
+        <p class="eyebrow reveal">{t.mission.eyebrow}</p>
         <h2 class="section-title reveal" style="--reveal-delay:60ms">
-          Every child deserves to know they are seen, valued and loved.
+          {t.mission.title}
         </h2>
       </div>
       <p class="mission__intro lead reveal" style="--reveal-delay:120ms">
-        We focus on children growing up in poverty, broken families and difficult
-        circumstances, creating experiences where each child can feel, deep down:
+        {t.mission.intro}
       </p>
     </div>
 
     <blockquote class="mission__quote reveal">
       <span class="mission__quote-mark" aria-hidden="true">“</span>
-      I am allowed to be here. I am valuable. I am loved.
+      {t.mission.quote}
     </blockquote>
 
     <div class="mission__grid">
       {
-        activities.map((a, i) => (
+        t.mission.activities.map((a, i) => (
           <article class="act reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
             <span class="act__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
             <h3 class="act__title">{a.title}</h3>

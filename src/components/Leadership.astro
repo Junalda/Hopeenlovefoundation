@@ -1,5 +1,8 @@
 ---
 import { founder, board } from "../config";
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const l = useTranslations(lang).leadership;
 
 function initials(name: string): string {
   const parts = name.trim().split(/\s+/);
@@ -12,13 +15,12 @@ function initials(name: string): string {
 <section class="lead-sec section" id="leadership">
   <div class="container">
     <div class="head center">
-      <p class="eyebrow center reveal">Leadership</p>
+      <p class="eyebrow center reveal">{l.eyebrow}</p>
       <h2 class="section-title reveal" style="--reveal-delay:60ms">
-        Meet the people behind the mission
+        {l.title}
       </h2>
       <p class="lead reveal" style="--reveal-delay:120ms">
-        A dedicated board guiding Hope &amp; Love Foundation with care, integrity and
-        shared conviction.
+        {l.lead}
       </p>
     </div>
 
@@ -32,18 +34,15 @@ function initials(name: string): string {
             sizes="(max-width: 760px) 92vw, 360px"
             width="1400"
             height="933"
-            alt="Esther Macnack, founder of Hope & Love Foundation"
+            alt={useTranslations(lang).story.photoAlt}
             loading="lazy"
           />
         </div>
         <div class="founder-card__body">
-          <span class="founder-card__tag">Founder</span>
+          <span class="founder-card__tag">{l.founderTag}</span>
           <h3 class="founder-card__name">{founder.name}</h3>
-          <p class="founder-card__role">{founder.role}</p>
-          <p class="founder-card__quote">
-            &ldquo;Every child deserves to know they are valuable, loved and never
-            alone.&rdquo;
-          </p>
+          <p class="founder-card__role">{l.founderRole}</p>
+          <p class="founder-card__quote">{l.founderQuote}</p>
         </div>
       </article>
 
@@ -55,7 +54,7 @@ function initials(name: string): string {
               <span class="board__avatar" aria-hidden="true">{initials(m.name)}</span>
               <div>
                 <h3 class="board__name">{m.name}</h3>
-                <p class="board__role">{m.role}</p>
+                <p class="board__role">{l.roles[i]}</p>
               </div>
             </article>
           ))

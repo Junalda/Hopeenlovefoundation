@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "./Nav.astro";
+import Hero from "./Hero.astro";
+import Pillars from "./Pillars.astro";
+import Mission from "./Mission.astro";
+import Story from "./Story.astro";
+import Faith from "./Faith.astro";
+import NextMission from "./NextMission.astro";
+import Donate from "./Donate.astro";
+import Support from "./Support.astro";
+import Leadership from "./Leadership.astro";
+import Transparency from "./Transparency.astro";
+import Contact from "./Contact.astro";
+import FinalCTA from "./FinalCTA.astro";
+import Footer from "./Footer.astro";
+import type { Lang } from "../i18n/ui";
+
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+---
+
+<Layout lang={lang}>
+  <Nav lang={lang} />
+  <main id="main">
+    <Hero lang={lang} />
+    <Pillars lang={lang} />
+    <Mission lang={lang} />
+    <Story lang={lang} />
+    <Faith lang={lang} />
+    <NextMission lang={lang} />
+    <Donate lang={lang} />
+    <Support lang={lang} />
+    <Leadership lang={lang} />
+    <Transparency lang={lang} />
+    <Contact lang={lang} />
+    <FinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

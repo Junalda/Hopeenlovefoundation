@@ -1,37 +1,19 @@
 ---
-const pillars = [
-  {
-    title: "Self-worth",
-    body: "Every child learns to believe: “I am valuable.”",
-    icon: "spark",
-  },
-  {
-    title: "Identity",
-    body: "Helping children discover who they truly are.",
-    icon: "compass",
-  },
-  {
-    title: "Family connection",
-    body: "Strengthening the bond between children and parents.",
-    icon: "link",
-  },
-  {
-    title: "Hope",
-    body: "A future worth looking forward to, with love.",
-    icon: "sun",
-  },
-];
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
+const k = t.pillars.kicker;
 ---
 
-<section class="pillars section" id="pillars" aria-label="What we stand for">
+<section class="pillars section" id="pillars" aria-label={t.pillars.kicker.join(" · ")}>
   <div class="container">
     <p class="pillars__kicker reveal">
-      Children<span>·</span>Identity<span>·</span>Hope<span>·</span>Love
+      {k[0]}<span>·</span>{k[1]}<span>·</span>{k[2]}<span>·</span>{k[3]}
     </p>
 
     <div class="pillars__grid">
       {
-        pillars.map((p, i) => (
+        t.pillars.items.map((p, i) => (
           <article class="pillar reveal" style={`--reveal-delay:${i * 70}ms`}>
             <h3 class="pillar__title">{p.title}</h3>
             <p class="pillar__body">{p.body}</p>

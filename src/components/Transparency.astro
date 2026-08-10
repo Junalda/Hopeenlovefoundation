@@ -1,37 +1,36 @@
 ---
 // Only real documents should be linked. None supplied yet → clearly marked
 // "in preparation". No ANBI status, registration numbers or figures are invented.
-const docs = [
-  { title: "Policy Plan", desc: "Our vision, mission and multi-year plan.", href: "" },
-  { title: "Annual Reports", desc: "What we did and the impact we made.", href: "" },
-  { title: "Financial Information", desc: "How funds are received and spent.", href: "" },
-  { title: "Foundation Information", desc: "Legal name, board and governance.", href: "" },
-];
+// Add a real URL to the matching hrefs entry to make a card live.
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const tr = useTranslations(lang).transparency;
+const hrefs = ["", "", "", ""]; // Policy Plan, Annual Reports, Financial, Foundation
 ---
 
 <section class="trans section" aria-labelledby="trans-title">
   <div class="container">
     <div class="head center">
-      <p class="eyebrow center reveal">Transparency</p>
+      <p class="eyebrow center reveal">{tr.eyebrow}</p>
       <h2 class="section-title reveal" id="trans-title" style="--reveal-delay:60ms">
-        Openness you can trust
+        {tr.title}
       </h2>
       <p class="lead reveal" style="--reveal-delay:120ms">
-        We&rsquo;re committed to doing this with integrity. Our foundation documents are
-        being finalised and will be published here.
+        {tr.lead}
       </p>
     </div>
 
     <div class="trans__grid">
       {
-        docs.map((d, i) => {
-          const available = d.href.trim().length > 0;
+        tr.docs.map((d, i) => {
+          const href = hrefs[i] ?? "";
+          const available = href.trim().length > 0;
           const Tag = available ? "a" : "div";
           return (
             <Tag
               class={`trans__card reveal${available ? " is-available" : ""}`}
               style={`--reveal-delay:${(i % 4) * 60}ms`}
-              {...(available ? { href: d.href, target: "_blank", rel: "noopener" } : {})}
+              {...(available ? { href, target: "_blank", rel: "noopener" } : {})}
             >
               <span class="trans__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14a0 0 0 0 1 0 0H6a0 0 0 0 1 0 0V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v4h4M8.5 13h7M8.5 16.5h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -40,9 +39,9 @@ const docs = [
               <p class="trans__card-desc">{d.desc}</p>
               <span class="trans__status">
                 {available ? (
-                  <>View document<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></>
+                  <>{tr.view}<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></>
                 ) : (
-                  <>In preparation</>
+                  <>{tr.inPrep}</>
                 )}
               </span>
             </Tag>

@@ -1,5 +1,8 @@
 ---
-const journey = ["Loss", "Healing", "Faith", "Purpose", "Children", "Hope"];
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
+const journey = t.story.journey;
 ---
 
 <section class="story section" id="story">
@@ -12,21 +15,19 @@ const journey = ["Loss", "Healing", "Faith", "Purpose", "Children", "Hope"];
           sizes="(max-width: 980px) 100vw, 46vw"
           width="1400"
           height="933"
-          alt="Esther Macnack, founder of Hope & Love Foundation"
+          alt={t.story.photoAlt}
           loading="lazy"
         />
       </div>
       <figcaption class="story__signature">
         <span class="story__sig-name">Esther</span>
-        <span class="story__sig-role">Founder, Hope &amp; Love Foundation</span>
+        <span class="story__sig-role">{t.story.sigRole}</span>
       </figcaption>
     </figure>
 
     <div class="story__body">
-      <p class="eyebrow reveal">Our Story</p>
-      <h2 class="story__title reveal" style="--reveal-delay:60ms">
-        Born from pain.<br /><span class="hl">Built on hope.</span>
-      </h2>
+      <p class="eyebrow reveal">{t.story.eyebrow}</p>
+      <h2 class="story__title reveal" style="--reveal-delay:60ms" set:html={t.story.titleHtml} />
 
       <div class="story__journey reveal" style="--reveal-delay:100ms" aria-hidden="true">
         {
@@ -40,33 +41,17 @@ const journey = ["Loss", "Healing", "Faith", "Purpose", "Children", "Hope"];
       </div>
 
       <div class="story__text reveal" style="--reveal-delay:160ms">
-        <p>
-          After experiencing seven miscarriages, founder Esther walked a long road of
-          grief and healing. Along the way, she came to understand that motherhood could
-          also mean being a motherly presence, a source of love, for other children.
-        </p>
-        <p>
-          About nine years ago, she felt God place a vision in her heart: to bring hope
-          and love to children across Curaçao, Suriname and the Netherlands. That vision
-          became Hope &amp; Love Foundation.
-        </p>
+        <p>{t.story.p1}</p>
+        <p>{t.story.p2}</p>
 
         <details class="story__more">
           <summary>
-            <span>Read Esther&rsquo;s story</span>
+            <span>{t.story.readMore}</span>
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="story__more-body">
-            <p>
-              What began as personal loss slowly became a calling. Esther discovered that
-              the love she longed to give did not have to be confined to one child. It
-              could reach many. Where there had been pain, a purpose took root.
-            </p>
-            <p>
-              Today that purpose is a movement of hope: reaching children and families who
-              carry heavy burdens, and showing them, through action, that they are seen,
-              valued and never alone.
-            </p>
+            <p>{t.story.more1}</p>
+            <p>{t.story.more2}</p>
           </div>
         </details>
       </div>

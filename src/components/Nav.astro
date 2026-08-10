@@ -1,16 +1,20 @@
 ---
-import { donation } from "../config";
+import { useTranslations, localizedPath, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
 const links = [
-  { href: "#mission", label: "Mission" },
-  { href: "#story", label: "Our Story" },
-  { href: "#next-mission", label: "Next Mission" },
-  { href: "#leadership", label: "Leadership" },
+  { href: "#mission", label: t.nav.mission },
+  { href: "#story", label: t.nav.story },
+  { href: "#next-mission", label: t.nav.nextMission },
+  { href: "#leadership", label: t.nav.leadership },
 ];
+const otherLang: Lang = lang === "nl" ? "en" : "nl";
+const switchHref = localizedPath(otherLang, "/");
 ---
 
 <header class="nav" id="nav" data-nav>
   <div class="nav__inner container">
-    <a href="#top" class="nav__brand" aria-label="Hope & Love Foundation — home">
+    <a href="#top" class="nav__brand" aria-label={t.nav.home}>
       <img
         src="/images/logo-480.png"
         srcset="/images/logo-480.png 480w, /images/logo-900.png 900w"
@@ -28,13 +32,19 @@ const links = [
     </nav>
 
     <div class="nav__actions">
-      <a href="#donate" class="btn btn--purple nav__cta">Donate</a>
+      <a href={switchHref} class="nav__lang" aria-label={t.nav.switchLabel} hreflang={otherLang}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3C9.5 5.5 9.5 18.5 12 21" stroke="currentColor" stroke-width="1.4"/></svg>
+        {t.nav.switchShort}
+      </a>
+      <a href="#donate" class="btn btn--purple nav__cta">{t.nav.donate}</a>
       <button
         class="nav__toggle"
-        aria-label="Open menu"
+        aria-label={t.nav.openMenu}
         aria-expanded="false"
         aria-controls="mobile-menu"
         data-menu-toggle
+        data-label-open={t.nav.openMenu}
+        data-label-close={t.nav.closeMenu}
       >
         <span></span><span></span><span></span>
       </button>
@@ -45,7 +55,8 @@ const links = [
   <div class="nav__mobile" id="mobile-menu" data-mobile-menu hidden>
     <nav class="nav__mobile-links" aria-label="Mobile">
       {links.map((l) => <a href={l.href} class="nav__mobile-link" data-mobile-link>{l.label}</a>)}
-      <a href="#donate" class="btn btn--purple btn--lg nav__mobile-cta" data-mobile-link>Donate Now</a>
+      <a href={switchHref} class="nav__mobile-link" hreflang={otherLang}>{t.nav.switchLabel}</a>
+      <a href="#donate" class="btn btn--purple btn--lg nav__mobile-cta" data-mobile-link>{t.nav.donate}</a>
     </nav>
   </div>
 </header>
@@ -117,6 +128,30 @@ const links = [
     font-size: 0.95rem;
     box-shadow: none;
   }
+  .nav__lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 650;
+    letter-spacing: 0.03em;
+    color: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease),
+      background 0.2s var(--ease);
+  }
+  .nav__lang svg {
+    width: 15px;
+    height: 15px;
+    opacity: 0.7;
+  }
+  .nav__lang:hover {
+    color: var(--purple);
+    border-color: rgba(138, 43, 136, 0.3);
+    background: rgba(138, 43, 136, 0.04);
+  }
 
   .nav__toggle {
     display: none;
@@ -176,7 +211,8 @@ const links = [
 
   @media (max-width: 860px) {
     .nav__links,
-    .nav__cta {
+    .nav__cta,
+    .nav__lang {
       display: none;
     }
     .nav__toggle {
@@ -212,7 +248,9 @@ const links = [
     if (!nav || !menu || !toggle) return;
     nav.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    const openLabel = toggle.getAttribute("data-label-open") || "Open menu";
+    const closeLabel = toggle.getAttribute("data-label-close") || "Close menu";
+    toggle.setAttribute("aria-label", open ? closeLabel : openLabel);
     if (open) {
       menu.hidden = false;
     } else {

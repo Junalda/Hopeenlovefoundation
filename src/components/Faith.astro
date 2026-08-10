@@ -1,19 +1,17 @@
 ---
 // Faith — authentic and elegant, not a church website.
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
 ---
 
-<section class="faith section" aria-label="Our foundation of faith">
+<section class="faith section" aria-label={t.faith.eyebrow}>
   <div class="container faith__inner reveal">
-    <p class="faith__eyebrow">Our Foundation</p>
-    <p class="faith__statement">
-      We believe every child is created with <span>value, purpose and dignity</span>,
-      and we seek to show the love of Jesus through the way we serve children and
-      families.
-    </p>
+    <p class="faith__eyebrow">{t.faith.eyebrow}</p>
+    <p class="faith__statement" set:html={t.faith.statementHtml} />
     <p class="faith__verse">
-      &ldquo;And now these three remain: faith, hope and love. But the greatest of
-      these is love.&rdquo;
-      <cite>1 Corinthians 13:13</cite>
+      {t.faith.verse}
+      <cite>{t.faith.verseRef}</cite>
     </p>
   </div>
 </section>
@@ -53,7 +51,7 @@
     line-height: 1.32;
     letter-spacing: -0.015em;
   }
-  .faith__statement span {
+  .faith__statement :global(span) {
     color: var(--gold);
   }
   .faith__verse {

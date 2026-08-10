@@ -1,5 +1,8 @@
 ---
 // Cinematic, typographic hero — brand gradient + heartbeat/heart motif.
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
 ---
 
 <section class="hero" id="top">
@@ -10,24 +13,20 @@
   </div>
 
   <div class="container hero__inner">
-    <h1 class="hero__title reveal">
-      Helping children discover <span class="hero__accent">who they are</span>, what
-      they are worth, and that they <span class="hero__accent hero__accent--gold">belong</span>.
-    </h1>
+    <h1 class="hero__title reveal" set:html={t.hero.titleHtml} />
 
     <p class="hero__lead lead reveal" style="--reveal-delay: 140ms">
-      We exist to give children hope, strengthen identity and self-worth, and create
-      meaningful connections between children, families and their communities.
+      {t.hero.lead}
     </p>
 
     <div class="hero__cta reveal" style="--reveal-delay: 220ms">
       <a href="#donate" class="btn btn--gold btn--lg">
-        Donate Now
+        {t.hero.donate}
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 21s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.5a4.3 4.3 0 0 1 7.5 3.3C19.5 16.4 12 21 12 21Z" fill="currentColor"/>
         </svg>
       </a>
-      <a href="#mission" class="btn btn--ghost btn--lg">Discover Our Mission</a>
+      <a href="#mission" class="btn btn--ghost btn--lg">{t.hero.discover}</a>
     </div>
 
     <!-- Heartbeat motif -->
@@ -55,8 +54,8 @@
     </div>
   </div>
 
-  <a href="#pillars" class="hero__scroll" aria-label="Scroll to explore">
-    <span>Scroll</span>
+  <a href="#pillars" class="hero__scroll" aria-label={t.hero.scroll}>
+    <span>{t.hero.scroll}</span>
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -124,10 +123,11 @@
     letter-spacing: -0.03em;
     line-height: 1.03;
   }
-  .hero__accent {
+  /* :global — these spans are injected via set:html, so scoped selectors miss them */
+  .hero__title :global(.hero__accent) {
     color: var(--purple);
   }
-  .hero__accent--gold {
+  .hero__title :global(.hero__accent--gold) {
     color: var(--gold-700);
   }
 

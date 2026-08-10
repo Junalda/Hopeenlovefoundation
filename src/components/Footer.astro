@@ -1,14 +1,11 @@
 ---
 import { site, contact } from "../config";
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const f = useTranslations(lang).footer;
 const year = 2026;
-const nav = [
-  { href: "#mission", label: "Mission" },
-  { href: "#story", label: "Our Story" },
-  { href: "#next-mission", label: "Next Mission" },
-  { href: "#leadership", label: "Leadership" },
-  { href: "#donate", label: "Donate" },
-  { href: "#contact", label: "Contact" },
-];
+const hrefs = ["#mission", "#story", "#next-mission", "#leadership", "#donate", "#contact"];
+const nav = f.nav.map((label, i) => ({ href: hrefs[i], label }));
 const hasEmail = contact.email.trim().length > 0;
 ---
 
@@ -34,14 +31,14 @@ const hasEmail = contact.email.trim().length > 0;
     </nav>
 
     <div class="footer__cta">
-      <a href="#donate" class="btn btn--gold">Donate Now</a>
+      <a href="#donate" class="btn btn--gold">{f.donate}</a>
       {hasEmail && <a href={`mailto:${contact.email}`} class="footer__email">{contact.email}</a>}
     </div>
   </div>
 
   <div class="container footer__bottom">
-    <p>&copy; {year} {site.legalName}. All rights reserved.</p>
-    <p class="footer__verse">&ldquo;The greatest of these is love.&rdquo; &middot; 1 Corinthians 13:13</p>
+    <p>&copy; {year} {site.legalName}. {f.rights}</p>
+    <p class="footer__verse">{f.verse}</p>
   </div>
 </footer>
 

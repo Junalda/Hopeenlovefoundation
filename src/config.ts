@@ -41,25 +41,19 @@ export const contact = {
   },
 };
 
-/** Next mission. Date/location below are taken from the official flyer. */
-export const nextMission = {
-  title: 'Curaçao 2026',
-  eyebrow: 'Our first pilot mission',
-  date: 'October 2026', // From the official flyer ("Oktober 2026").
-  location: 'Curaçao',
-  childrenRange: '60–75 children',
-};
-
-/** Leadership — names from the foundation vision document. */
+/**
+ * Leadership — names from the foundation vision document.
+ * Roles are translated per language in src/i18n/ui.ts (leadership.roles),
+ * matched to this list by order.
+ */
 export const founder = {
   name: 'Esther Macnack',
-  role: 'Founder & Vision Bearer',
   photo: '/images/founder-1400.jpg',
 };
 
 export const board = [
-  { name: 'Roxana Stephanie Telgt', role: 'Chair' },
-  { name: 'David Anema', role: 'Secretary' },
-  { name: 'Bianca Patricia Derveld-Macnack', role: 'Treasurer' },
-  { name: 'Conor Peter Oisin Lont', role: 'Board Member' },
+  { name: 'Roxana Stephanie Telgt' },
+  { name: 'David Anema' },
+  { name: 'Bianca Patricia Derveld-Macnack' },
+  { name: 'Conor Peter Oisin Lont' },
 ];

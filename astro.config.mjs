@@ -5,6 +5,13 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://hopeandlovefoundation.org',
   compressHTML: true,
+  i18n: {
+    defaultLocale: 'nl',
+    locales: ['nl', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   build: {
     inlineStylesheets: 'auto',
   },

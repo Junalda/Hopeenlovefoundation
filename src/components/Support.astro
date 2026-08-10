@@ -1,30 +1,24 @@
 ---
-const items = [
-  { title: "Children & activities", body: "A full day of care, attention and joy for every child.", icon: "child" },
-  { title: "Workshops", body: "Materials and space for identity and confidence building.", icon: "book" },
-  { title: "Sports & creativity", body: "Equipment for games, art, music and movement.", icon: "ball" },
-  { title: "Meals & care", body: "Warm meals and food packages for families in need.", icon: "meal" },
-  { title: "Gifts", body: "Backpacks, small gifts and encouragement to take home.", icon: "gift" },
-  { title: "Future missions", body: "Reaching more islands, more families, year after year.", icon: "globe" },
-];
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const s = useTranslations(lang).support;
 ---
 
 <section class="support section" aria-labelledby="support-title">
   <div class="container">
     <div class="head center">
-      <p class="eyebrow center reveal">Why donate</p>
+      <p class="eyebrow center reveal">{s.eyebrow}</p>
       <h2 class="section-title reveal" id="support-title" style="--reveal-delay:60ms">
-        Where does your support go?
+        {s.title}
       </h2>
       <p class="lead reveal" style="--reveal-delay:120ms">
-        Every gift goes directly into creating meaningful experiences for children and
-        practical support for their families.
+        {s.lead}
       </p>
     </div>
 
     <div class="support__grid">
       {
-        items.map((it, i) => (
+        s.items.map((it, i) => (
           <article class="support__item reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
             <h3 class="support__item-title">{it.title}</h3>
             <p class="support__item-body">{it.body}</p>

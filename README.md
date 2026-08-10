@@ -15,10 +15,24 @@ npm run build    # outputs to dist/
 npm run preview  # preview the production build
 ```
 
+## 🌍 Languages
+
+The site is bilingual — **Dutch is the primary language** (served at `/`) and
+**English is the option** (served at `/en/`). A language switch sits in the
+navigation on every page.
+
+- All visitor-facing text lives in **`src/i18n/ui.ts`**, with a `nl` and an `en`
+  block that mirror each other. Edit the text there; both languages stay in sync
+  structurally.
+- Factual, language-neutral data (bank details, contact, GoFundMe link, names)
+  stays in `src/config.ts` and is shared by both languages.
+- Board **roles** are translated in `ui.ts` (`leadership.roles`) and matched to
+  the board members in `config.ts` by order.
+
 ## ✏️ Editing content
 
-Nearly all editable content lives in **`src/config.ts`**. You can update the
-foundation's details there without touching layout or styling.
+Editable text lives in **`src/i18n/ui.ts`** (per language). Factual details live
+in **`src/config.ts`**. You can update either without touching layout or styling.
 
 ### ⚠️ Placeholders to replace before going live
 

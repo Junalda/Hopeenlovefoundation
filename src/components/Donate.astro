@@ -1,5 +1,8 @@
 ---
 import { donation } from "../config";
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const d = useTranslations(lang).donate;
 const { gofundmeUrl, bank } = donation;
 const hasGofundme = gofundmeUrl.trim().length > 0;
 const hasIban = bank.iban.trim().length > 0;
@@ -9,25 +12,21 @@ const hasBic = bank.bic.trim().length > 0;
 <section class="donate section" id="donate">
   <div class="container">
     <div class="head center">
-      <p class="eyebrow center reveal">Donate</p>
+      <p class="eyebrow center reveal">{d.eyebrow}</p>
       <h2 class="section-title reveal" style="--reveal-delay:60ms">
-        Help us create a day they will never forget.
+        {d.title}
       </h2>
       <p class="lead reveal" style="--reveal-delay:120ms">
-        Your contribution helps us create experiences where children feel seen, valued,
-        encouraged and loved.
+        {d.lead}
       </p>
     </div>
 
     <div class="donate__grid">
       <!-- Option 1 — Online -->
       <article class="donate__card donate__card--online reveal">
-        <div class="donate__badge">Option 1</div>
-        <h3 class="donate__card-title">Donate online</h3>
-        <p class="donate__card-copy">
-          The fastest way to give. Support our campaign securely through GoFundMe and
-          share it with others.
-        </p>
+        <div class="donate__badge">{d.option} 1</div>
+        <h3 class="donate__card-title">{d.onlineTitle}</h3>
+        <p class="donate__card-copy">{d.onlineCopy}</p>
 
         <ul class="donate__amounts" aria-hidden="true">
           <li>€25</li>
@@ -43,16 +42,16 @@ const hasBic = bank.bic.trim().length > 0;
               target="_blank"
               rel="noopener noreferrer"
             >
-              Donate via GoFundMe
+              {d.gofundme}
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           ) : (
             <div class="donate__pending">
               <span class="btn btn--gold btn--lg donate__main-btn is-disabled" aria-disabled="true">
-                Donate via GoFundMe
+                {d.gofundme}
               </span>
               <p class="donate__note">
-                <span class="donate__dot"></span>Campaign link coming soon. Check back shortly.
+                <span class="donate__dot"></span>{d.pending}
               </p>
             </div>
           )
@@ -61,31 +60,29 @@ const hasBic = bank.bic.trim().length > 0;
 
       <!-- Option 2 — Direct -->
       <article class="donate__card donate__card--bank reveal" style="--reveal-delay:80ms">
-        <div class="donate__badge donate__badge--purple">Option 2</div>
-        <h3 class="donate__card-title">Donate directly</h3>
-        <p class="donate__card-copy">
-          Prefer a bank transfer? Give directly to the foundation using the details below.
-        </p>
+        <div class="donate__badge donate__badge--purple">{d.option} 2</div>
+        <h3 class="donate__card-title">{d.bankTitle}</h3>
+        <p class="donate__card-copy">{d.bankCopy}</p>
 
         <dl class="bank">
           <div class="bank__row">
-            <dt>Account holder</dt>
+            <dt>{d.accountHolder}</dt>
             <dd>{bank.accountHolder}</dd>
           </div>
           <div class="bank__row">
-            <dt>IBAN</dt>
+            <dt>{d.iban}</dt>
             <dd>
               {
                 hasIban ? (
                   <div class="bank__iban">
                     <code>{bank.iban}</code>
-                    <button class="bank__copy" data-copy={bank.iban} type="button" aria-label="Copy IBAN">
+                    <button class="bank__copy" data-copy={bank.iban} type="button" aria-label={`${d.copy} IBAN`}>
                       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.7"/></svg>
-                      <span data-copy-label>Copy</span>
+                      <span data-copy-label data-copied={d.copied}>{d.copy}</span>
                     </button>
                   </div>
                 ) : (
-                  <span class="bank__pending">To be confirmed</span>
+                  <span class="bank__pending">{d.tbc}</span>
                 )
               }
             </dd>
@@ -93,16 +90,16 @@ const hasBic = bank.bic.trim().length > 0;
           {
             (hasBic || !hasIban) && (
               <div class="bank__row">
-                <dt>BIC / SWIFT</dt>
+                <dt>{d.bic}</dt>
                 <dd>
-                  {hasBic ? <code>{bank.bic}</code> : <span class="bank__pending">To be confirmed</span>}
+                  {hasBic ? <code>{bank.bic}</code> : <span class="bank__pending">{d.tbc}</span>}
                 </dd>
               </div>
             )
           }
         </dl>
         <p class="donate__note donate__note--muted">
-          Please reference <strong>&ldquo;Curaçao 2026&rdquo;</strong> with your gift.
+          {d.reference}<strong>{d.referenceTag}</strong>{d.referenceEnd}
         </p>
       </article>
     </div>
