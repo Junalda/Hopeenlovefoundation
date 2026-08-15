@@ -145,12 +145,17 @@ function initials(name: string): string {
     display: flex;
     align-items: center;
     gap: 1rem;
+    min-width: 0;
     padding: 1.4rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background: linear-gradient(180deg, #fff, var(--bg-soft));
     transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
       border-color 0.4s var(--ease);
+  }
+  /* let the text column shrink so long words never overflow the card */
+  .board__card > div {
+    min-width: 0;
   }
   .board__card:hover {
     transform: translateY(-3px);
@@ -184,14 +189,17 @@ function initials(name: string): string {
   .board__name {
     font-size: 1.08rem;
     line-height: 1.25;
+    overflow-wrap: break-word;
   }
   .board__role {
     font-size: 0.9rem;
     color: var(--muted);
     margin-top: 0.15rem;
+    overflow-wrap: break-word;
   }
 
-  @media (max-width: 760px) {
+  /* Stack founder + board before portrait tablets so board cards stay roomy */
+  @media (max-width: 900px) {
     .lead-sec__wrap {
       grid-template-columns: 1fr;
     }
