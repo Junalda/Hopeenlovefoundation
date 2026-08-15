@@ -51,7 +51,20 @@ function initials(name: string): string {
         {
           board.map((m, i) => (
             <article class="board__card reveal" style={`--reveal-delay:${i * 60}ms`}>
-              <span class="board__avatar" aria-hidden="true">{initials(m.name)}</span>
+              {
+                "photo" in m && m.photo ? (
+                  <img
+                    class="board__avatar board__avatar--photo"
+                    src={m.photo}
+                    width="108"
+                    height="108"
+                    alt={m.name}
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="board__avatar" aria-hidden="true">{initials(m.name)}</span>
+                )
+              }
               <div>
                 <h3 class="board__name">{m.name}</h3>
                 <p class="board__role">{l.roles[i]}</p>
@@ -161,6 +174,12 @@ function initials(name: string): string {
   .board__card:nth-child(even) .board__avatar {
     background: linear-gradient(135deg, var(--gold), var(--gold-600));
     color: #3a2a06;
+  }
+  .board__avatar--photo {
+    object-fit: cover;
+    object-position: center 20%;
+    background: var(--bg-soft-2);
+    box-shadow: inset 0 0 0 1px rgba(27, 20, 32, 0.06);
   }
   .board__name {
     font-size: 1.08rem;

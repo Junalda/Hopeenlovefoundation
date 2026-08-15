@@ -53,7 +53,7 @@ export const founder = {
 };
 
 export const board = [
-  { name: 'Roxana Stephanie Telgt' },
+  { name: 'Roxana Stephanie Telgt', photo: '/images/board-roxana-320.jpg' },
   { name: 'David Anema' },
   { name: 'Bianca Patricia Derveld-Macnack' },
   { name: 'Conor Peter Oisin Lont' },
