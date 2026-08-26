@@ -1,5 +1,6 @@
 ---
 import { useTranslations, type Lang } from "../i18n/ui";
+import ReadMore from "./ReadMore.astro";
 const { lang = "nl" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 ---
@@ -23,17 +24,19 @@ const t = useTranslations(lang);
       {t.mission.quote}
     </blockquote>
 
-    <div class="mission__grid">
-      {
-        t.mission.activities.map((a, i) => (
-          <article class="act reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
-            <span class="act__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-            <h3 class="act__title">{a.title}</h3>
-            <p class="act__body">{a.body}</p>
-          </article>
-        ))
-      }
-    </div>
+    <ReadMore more={t.common.showMore} less={t.common.showLess} collapsed={22} center>
+      <div class="mission__grid">
+        {
+          t.mission.activities.map((a, i) => (
+            <article class="act reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
+              <span class="act__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <h3 class="act__title">{a.title}</h3>
+              <p class="act__body">{a.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </ReadMore>
   </div>
 </section>
 

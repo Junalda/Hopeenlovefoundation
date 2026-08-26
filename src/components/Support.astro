@@ -1,7 +1,9 @@
 ---
 import { useTranslations, type Lang } from "../i18n/ui";
+import ReadMore from "./ReadMore.astro";
 const { lang = "nl" } = Astro.props as { lang?: Lang };
-const s = useTranslations(lang).support;
+const t = useTranslations(lang);
+const s = t.support;
 ---
 
 <section class="support section" aria-labelledby="support-title">
@@ -16,16 +18,18 @@ const s = useTranslations(lang).support;
       </p>
     </div>
 
-    <div class="support__grid">
-      {
-        s.items.map((it, i) => (
-          <article class="support__item reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
-            <h3 class="support__item-title">{it.title}</h3>
-            <p class="support__item-body">{it.body}</p>
-          </article>
-        ))
-      }
-    </div>
+    <ReadMore more={t.common.showMore} less={t.common.showLess} collapsed={20} center>
+      <div class="support__grid">
+        {
+          s.items.map((it, i) => (
+            <article class="support__item reveal" style={`--reveal-delay:${(i % 3) * 70}ms`}>
+              <h3 class="support__item-title">{it.title}</h3>
+              <p class="support__item-body">{it.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </ReadMore>
   </div>
 </section>
 

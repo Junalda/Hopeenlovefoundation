@@ -27,6 +27,12 @@ export function localizedPath(lang: Lang, path = "/"): string {
 
 export const ui = {
   nl: {
+    common: {
+      readMore: "Lees meer",
+      readLess: "Lees minder",
+      showMore: "Toon meer",
+      showLess: "Toon minder",
+    },
     meta: {
       title: "Hope & Love Foundation | Hoop en liefde voor kinderen",
       description:
@@ -211,6 +217,12 @@ export const ui = {
   },
 
   en: {
+    common: {
+      readMore: "Read more",
+      readLess: "Read less",
+      showMore: "Show more",
+      showLess: "Show less",
+    },
     meta: {
       title: "Hope & Love Foundation | Creating Hope for Children",
       description:

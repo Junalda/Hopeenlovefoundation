@@ -1,0 +1,139 @@
+---
+/**
+ * ReadMore — collapses its slotted content on mobile only (≤640px) behind a
+ * "read more / show more" toggle. On tablet/desktop the content is always shown
+ * in full and no button appears. A small script measures the content and only
+ * enables the toggle when the content actually overflows the collapsed height.
+ */
+interface Props {
+  more?: string;
+  less?: string;
+  /** Collapsed height on mobile, in rem. */
+  collapsed?: number;
+  /** Center the toggle (nice under card grids). */
+  center?: boolean;
+}
+const { more = "Lees meer", less = "Lees minder", collapsed = 9, center = false } =
+  Astro.props;
+---
+
+<div class={`rm${center ? " rm--center" : ""}`} data-rm style={`--rm-h:${collapsed}rem`}>
+  <div class="rm__body">
+    <slot />
+  </div>
+  <button
+    class="rm__btn"
+    type="button"
+    data-rm-toggle
+    data-more={more}
+    data-less={less}
+    aria-expanded="false"
+  >
+    <span class="rm__label">{more}</span>
+    <svg class="rm__chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+      ><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg
+    >
+  </button>
+</div>
+
+<style>
+  .rm__btn {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .rm--needed .rm__body {
+      max-height: var(--rm-h);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+      transition: max-height 0.4s var(--ease);
+    }
+    .rm--needed.is-open .rm__body {
+      max-height: 320em;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .rm--needed .rm__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
+      padding: 0.35rem 0;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 650;
+      color: var(--purple);
+    }
+    .rm--center.rm--needed {
+      text-align: center;
+    }
+    .rm__chev {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s var(--ease);
+    }
+    .is-open .rm__chev {
+      transform: rotate(180deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rm__body,
+    .rm__chev {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const mq = window.matchMedia("(max-width: 640px)");
+
+  function measure() {
+    document.querySelectorAll<HTMLElement>("[data-rm]").forEach((rm) => {
+      const body = rm.querySelector<HTMLElement>(".rm__body");
+      if (!body) return;
+      if (!mq.matches) {
+        rm.classList.remove("rm--needed");
+        return;
+      }
+      const rootPx =
+        parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const hRem = parseFloat(getComputedStyle(rm).getPropertyValue("--rm-h")) || 9;
+      const collapsedPx = hRem * rootPx;
+      // Measure natural height without the clamp interfering.
+      const wasNeeded = rm.classList.contains("rm--needed");
+      const wasOpen = rm.classList.contains("is-open");
+      rm.classList.remove("rm--needed");
+      const full = body.scrollHeight;
+      const needed = full > collapsedPx + 10;
+      rm.classList.toggle("rm--needed", needed);
+      if (needed && wasNeeded && wasOpen) rm.classList.add("is-open");
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-rm-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const rm = btn.closest("[data-rm]");
+      const label = btn.querySelector(".rm__label");
+      if (!rm) return;
+      const open = rm.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", String(open));
+      if (label)
+        label.textContent = open
+          ? btn.getAttribute("data-less")
+          : btn.getAttribute("data-more");
+    });
+  });
+
+  let raf = 0;
+  const onResize = () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(measure);
+  };
+  window.addEventListener("resize", onResize, { passive: true });
+  window.addEventListener("load", measure);
+  measure();
+</script>
