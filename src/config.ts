@@ -54,7 +54,7 @@ export const founder = {
 
 export const board = [
   { name: 'Roxana Stephanie Telgt', photo: '/images/board-roxana-320.jpg' },
-  { name: 'David Anema', photo: '/images/board-david-320.jpg' },
+  { name: 'David Sefanja Anema', photo: '/images/board-david-320.jpg' },
   { name: 'Bianca Patricia Macknack', photo: '/images/board-bianca-320.jpg' },
   { name: 'Conor Peter Oisin Lont', photo: '/images/board-conor-320.jpg' },
 ];
