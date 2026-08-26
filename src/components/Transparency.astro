@@ -6,7 +6,12 @@ import { useTranslations, type Lang } from "../i18n/ui";
 import { foundationInfo } from "../config";
 const { lang = "nl" } = Astro.props as { lang?: Lang };
 const tr = useTranslations(lang).transparency;
-const hrefs = ["", "", "", ""]; // Policy Plan, Annual Reports, Financial, Foundation
+const hrefs = [
+  "/docs/beleidsplan-hope-love-foundation.pdf", // Policy Plan
+  "", // Annual Reports
+  "", // Financial Information
+  "", // Foundation Information
+];
 // Temporarily hidden document cards (by index). 1 = Annual Reports, 2 = Financial
 // Information. Remove indices here to show them again.
 const hidden = [1, 2];
