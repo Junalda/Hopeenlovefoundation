@@ -219,7 +219,7 @@ export const ui = {
       donate: "Doneer nu",
     },
     footer: {
-      nav: ["Missie", "In de media", "Volgende missie", "Bestuur", "Doneren", "Contact"],
+      nav: ["Missie", "Volgende missie", "Bestuur", "In de media", "Doneren", "Contact"],
       donate: "Doneer nu",
       rights: "Alle rechten voorbehouden.",
       verse: "“De meeste van deze is de liefde.” · 1 Korintiërs 13:13",
@@ -419,7 +419,7 @@ export const ui = {
       donate: "Donate Now",
     },
     footer: {
-      nav: ["Mission", "In the media", "Next Mission", "Leadership", "Donate", "Contact"],
+      nav: ["Mission", "Next Mission", "Leadership", "In the media", "Donate", "Contact"],
       donate: "Donate Now",
       rights: "All rights reserved.",
       verse: "“The greatest of these is love.” · 1 Corinthians 13:13",

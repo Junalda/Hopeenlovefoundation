@@ -4,7 +4,7 @@ import { useTranslations, type Lang } from "../i18n/ui";
 const { lang = "nl" } = Astro.props as { lang?: Lang };
 const f = useTranslations(lang).footer;
 const year = 2026;
-const hrefs = ["#mission", "#media", "#next-mission", "#leadership", "#donate", "#contact"];
+const hrefs = ["#mission", "#next-mission", "#leadership", "#media", "#donate", "#contact"];
 const nav = f.nav.map((label, i) => ({ href: hrefs[i], label }));
 const hasEmail = contact.email.trim().length > 0;
 ---
