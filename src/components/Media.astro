@@ -1,0 +1,115 @@
+---
+import { media } from "../config";
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const m = useTranslations(lang).media;
+
+function actionLabel(item: (typeof media)[number]): string {
+  if (item.type === "podcast") return `${m.actionPodcast} ${item.source}`.trim();
+  if (item.type === "article" && item.source)
+    return `${m.actionArticle} ${item.source}`.trim();
+  return m.actionMore;
+}
+---
+
+<section class="media section" id="media">
+  <div class="container">
+    <div class="head center">
+      <p class="eyebrow center reveal">{m.eyebrow}</p>
+      <h2 class="section-title reveal" style="--reveal-delay:60ms">{m.title}</h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">{m.subtitle}</p>
+    </div>
+
+    <div class="media__grid">
+      {
+        media.map((item, i) => (
+          <a
+            class="media__card reveal"
+            style={`--reveal-delay:${(i % 3) * 70}ms`}
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3 class="media__title">{item.title}</h3>
+            <span class="media__action">
+              {actionLabel(item)}
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .media {
+    background: var(--bg);
+  }
+  .media__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(0.9rem, 2vw, 1.4rem);
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .media__card {
+    display: block;
+    min-width: 0;
+    padding: clamp(1.4rem, 2.6vw, 1.8rem);
+    background: linear-gradient(180deg, #fff, var(--bg-soft));
+    border: 1px solid var(--line);
+    border-left: 3px solid rgba(138, 43, 136, 0.4);
+    border-radius: var(--radius-lg);
+    color: inherit;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
+      border-color 0.4s var(--ease);
+  }
+  .media__card:nth-child(even) {
+    border-left-color: rgba(242, 178, 51, 0.55);
+  }
+  .media__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(138, 43, 136, 0.18);
+    border-left-color: var(--purple);
+  }
+  .media__card:nth-child(even):hover {
+    border-left-color: var(--gold);
+  }
+
+  .media__title {
+    font-size: 1.2rem;
+    line-height: 1.25;
+    overflow-wrap: break-word;
+  }
+  .media__action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+    transition: color 0.2s var(--ease), gap 0.3s var(--ease);
+  }
+  .media__action svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s var(--ease);
+  }
+  .media__card:hover .media__action {
+    color: var(--purple);
+    gap: 0.5rem;
+  }
+  .media__card:hover .media__action svg {
+    transform: translate(2px, -2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .media__card,
+    .media__action,
+    .media__action svg {
+      transition: none;
+    }
+  }
+</style>

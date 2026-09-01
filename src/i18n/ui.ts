@@ -41,6 +41,7 @@ export const ui = {
     nav: {
       mission: "Missie",
       story: "Ons verhaal",
+      media: "In de media",
       nextMission: "Volgende missie",
       leadership: "Bestuur",
       donate: "Doneren",
@@ -93,6 +94,15 @@ export const ui = {
       more2: "Vandaag is die bestemming een beweging van hoop: kinderen en gezinnen bereiken die zware lasten dragen, en hun door daden laten zien dat ze gezien en gewaardeerd worden en er nooit alleen voor staan.",
       sigRole: "Oprichter, Hope & Love Foundation",
       photoAlt: "Esther Macnack, oprichter van Stichting Hope & Love Foundation",
+    },
+    media: {
+      eyebrow: "In de media",
+      title: "In gesprek met Esther",
+      subtitle:
+        "Lees en luister meer over wat de aanleiding was voor Esther, oprichter van Hope & Love Foundation, om de stichting op te richten.",
+      actionArticle: "Lees artikel op",
+      actionPodcast: "Luister op",
+      actionMore: "Lees meer",
     },
     faith: {
       eyebrow: "Ons fundament",
@@ -209,7 +219,7 @@ export const ui = {
       donate: "Doneer nu",
     },
     footer: {
-      nav: ["Missie", "Ons verhaal", "Volgende missie", "Bestuur", "Doneren", "Contact"],
+      nav: ["Missie", "In de media", "Volgende missie", "Bestuur", "Doneren", "Contact"],
       donate: "Doneer nu",
       rights: "Alle rechten voorbehouden.",
       verse: "“De meeste van deze is de liefde.” · 1 Korintiërs 13:13",
@@ -231,6 +241,7 @@ export const ui = {
     nav: {
       mission: "Mission",
       story: "Our Story",
+      media: "In the media",
       nextMission: "Next Mission",
       leadership: "Leadership",
       donate: "Donate",
@@ -283,6 +294,15 @@ export const ui = {
       more2: "Today that purpose is a movement of hope: reaching children and families who carry heavy burdens, and showing them, through action, that they are seen, valued and never alone.",
       sigRole: "Founder, Hope & Love Foundation",
       photoAlt: "Esther Macnack, founder of Hope & Love Foundation",
+    },
+    media: {
+      eyebrow: "In the media",
+      title: "In conversation with Esther",
+      subtitle:
+        "Read and hear more about what inspired Esther, founder of Hope & Love Foundation, to start the foundation.",
+      actionArticle: "Read the article on",
+      actionPodcast: "Listen on",
+      actionMore: "Read more",
     },
     faith: {
       eyebrow: "Our Foundation",
@@ -399,7 +419,7 @@ export const ui = {
       donate: "Donate Now",
     },
     footer: {
-      nav: ["Mission", "Our Story", "Next Mission", "Leadership", "Donate", "Contact"],
+      nav: ["Mission", "In the media", "Next Mission", "Leadership", "Donate", "Contact"],
       donate: "Donate Now",
       rights: "All rights reserved.",
       verse: "“The greatest of these is love.” · 1 Corinthians 13:13",

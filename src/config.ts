@@ -59,6 +59,35 @@ export const board = [
   { name: 'Conor Peter Oisin Lont', photo: '/images/board-conor-320.jpg' },
 ];
 
+/**
+ * Media appearances shown in the "In de media" section. Each card is fully
+ * clickable and opens `href` in a new tab.
+ * `type` picks the action label (article → "Lees artikel op", podcast →
+ * "Luister op", other → "Lees meer"); `source` is the shown destination.
+ */
+export const media = [
+  {
+    title: 'Esther in Lefwijf',
+    type: 'article' as const,
+    source: 'lefwijf.nl',
+    href: 'https://share.google/0EVtxLkbAI5rsdNya',
+  },
+  {
+    title: "Esther's Podcast",
+    type: 'podcast' as const,
+    source: 'Spotify',
+    href: 'https://open.spotify.com/episode/45GFIqC4IeUW2kxqElu7GK?si=iIE9MZC_RAy0p-sIlbvkTg&utm_source=whatsapp',
+  },
+  {
+    // TODO: confirm the correct title/source for this item (link could not be
+    // opened here). Update `title` and `source` once known.
+    title: 'Esther in de media',
+    type: 'article' as const,
+    source: '',
+    href: 'https://share.google/NLjEWjJh7wRDbeIYO',
+  },
+];
+
 /** Official registration details (public KvK register). */
 export const foundationInfo = {
   legalName: 'Stichting Hope & Love Foundation',
