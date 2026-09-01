@@ -2,8 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "git": {
     "deploymentEnabled": {
-      "main": false,
-      "claude/hope-love-foundation-site-849qv6": false
+      "main": false
     }
   }
 }
