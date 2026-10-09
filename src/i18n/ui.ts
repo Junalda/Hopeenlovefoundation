@@ -34,9 +34,9 @@ export const ui = {
       showLess: "Toon minder",
     },
     meta: {
-      title: "Hope & Love Foundation | Hoop en liefde voor kinderen",
+      title: "Stichting Hope & Love Foundation (Almere) | Hoop en eigenwaarde voor kinderen",
       description:
-        "Stichting Hope & Love Foundation helpt kinderen hun identiteit ontdekken, eigenwaarde opbouwen en hoop, liefde en betekenisvolle verbondenheid ervaren.",
+        "Stichting uit Almere die kinderen in kwetsbare situaties hoop, eigenwaarde en verbinding geeft — op de Caribische eilanden en in Nederland.",
     },
     nav: {
       mission: "Missie",
@@ -234,9 +234,9 @@ export const ui = {
       showLess: "Show less",
     },
     meta: {
-      title: "Hope & Love Foundation | Creating Hope for Children",
+      title: "Hope & Love Foundation (Almere) | Hope and self-worth for children",
       description:
-        "Hope & Love Foundation helps children discover their identity, build self-worth and experience hope, love and meaningful connection.",
+        "Almere-based foundation giving children in vulnerable situations hope, self-worth and connection — across the Caribbean islands and the Netherlands.",
     },
     nav: {
       mission: "Mission",
