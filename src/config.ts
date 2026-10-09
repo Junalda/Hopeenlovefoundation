@@ -13,7 +13,7 @@ export const site = {
   name: 'Hope & Love Foundation',
   legalName: 'Stichting Hope & Love Foundation',
   slogan: 'Bringers of hope, carriers of love.',
-  url: 'https://hopeandlovefoundation.org',
+  url: 'https://www.hopelovefoundation.nl',
   kvk: '42012653', // Dutch Chamber of Commerce (KvK) registration number
   description:
     'Hope & Love Foundation helps children discover their identity, build self-worth and experience hope, love and meaningful connection.',

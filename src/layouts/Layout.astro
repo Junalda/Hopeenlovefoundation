@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { site } from "../config";
+import { site, contact, founder, board } from "../config";
 import { useTranslations, type Lang } from "../i18n/ui";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
@@ -17,28 +17,76 @@ const t = useTranslations(lang);
 const pageTitle = title ?? t.meta.title;
 const pageDescription = description ?? t.meta.description;
 
-const canonical = new URL(Astro.url.pathname, site.url).href;
-const ogImage = new URL("/images/og-image.jpg", site.url).href;
-const nlUrl = new URL("/", site.url).href;
-const enUrl = new URL("/en/", site.url).href;
+// Single source of truth for absolute URLs: the `site` from astro.config.mjs.
+const base = Astro.site ?? new URL(site.url);
+const abs = (path: string) => new URL(path, base).href;
 
-const jsonLd = {
-  "@context": "https://schema.org",
+const canonical = abs(Astro.url.pathname);
+const ogImage = abs("/images/og-image.jpg");
+const nlUrl = abs("/");
+const enUrl = abs("/en/");
+
+// ---- Structured data (schema.org) ----
+const orgId = abs("#organization");
+const phone = contact.phone.replace(/[\s()]/g, "");
+const members = board.map((m, i) => ({
+  "@type": "OrganizationRole",
+  roleName: t.leadership.roles[i],
+  member: { "@type": "Person", name: m.name },
+}));
+
+const organization = {
   "@type": "NGO",
+  "@id": orgId,
   name: site.legalName,
   alternateName: site.name,
   slogan: site.slogan,
-  url: site.url,
+  url: nlUrl,
   description: pageDescription,
   inLanguage: lang,
-  logo: new URL("/images/logo-900.png", site.url).href,
-  areaServed: ["Curaçao", "Aruba", "Bonaire", "Suriname", "Netherlands"],
-  founder: { "@type": "Person", name: "Esther Macnack" },
-  identifier: {
-    "@type": "PropertyValue",
-    propertyID: "KvK",
-    value: site.kvk,
+  logo: abs("/images/logo-900.png"),
+  image: ogImage,
+  email: contact.email,
+  telephone: phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Beneluxlaan 668",
+    postalCode: "1363 DA",
+    addressLocality: "Almere",
+    addressCountry: "NL",
   },
+  areaServed: ["Curaçao", "Aruba", "Bonaire", "Suriname", "Netherlands"],
+  founder: { "@type": "Person", name: founder.name },
+  member: members,
+  sameAs: [contact.social.instagram, contact.social.facebook, contact.social.linkedin].filter(
+    Boolean
+  ),
+  identifier: { "@type": "PropertyValue", propertyID: "KvK", value: site.kvk },
+};
+
+const event = {
+  "@type": "Event",
+  "@id": abs("#mission-curacao-2026"),
+  name: lang === "nl" ? "Missie Curaçao 2026" : "Curaçao 2026 Mission",
+  description:
+    lang === "nl"
+      ? "Een dag vol workshops, sport, spel, creativiteit en een warme maaltijd voor 60–75 kinderen op Curaçao."
+      : "A day of workshops, sports, games, creativity and a warm meal for 60–75 children in Curaçao.",
+  startDate: "2026-10",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  location: {
+    "@type": "Place",
+    name: "Curaçao",
+    address: { "@type": "PostalAddress", addressCountry: "CW" },
+  },
+  organizer: { "@id": orgId },
+  image: ogImage,
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [organization, event],
 };
 ---
 
