@@ -5,7 +5,7 @@ const { lang = "nl" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 ---
 
-<section class="faith section" aria-label={t.faith.eyebrow}>
+<section class="faith section" id="faith" aria-label={t.faith.eyebrow}>
   <div class="container faith__inner reveal">
     <p class="faith__eyebrow">{t.faith.eyebrow}</p>
     <p class="faith__statement" set:html={t.faith.statementHtml} />

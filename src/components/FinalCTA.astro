@@ -5,7 +5,7 @@ const { lang = "nl" } = Astro.props as { lang?: Lang };
 const f = useTranslations(lang).final;
 ---
 
-<section class="final" aria-labelledby="final-title">
+<section class="final" id="final-cta" aria-labelledby="final-title">
   <div class="final__bg" aria-hidden="true">
     <div class="final__orb"></div>
     <svg class="final__pulse" viewBox="0 0 1200 100" preserveAspectRatio="none">
