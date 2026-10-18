@@ -103,16 +103,21 @@ matched, so the live site stays fully indexable.
 > staging hostname, add it to this header list too. Preview SSO protection still
 > covers the `*.vercel.app` preview URLs.
 
-## Make the gate enforceable (remaining one-time setup — owner only)
+## The enforceable gate
 
-These require repo-owner / dashboard rights that an automated session does not
-have. Do them once to turn the soft lock into an enforced approval gate:
+1. **GitHub branch protection on the production branch — DONE (2026-10-18).**
+   A branch protection rule is active on `claude/hope-love-foundation-site-849qv6`
+   (the Vercel production branch): `"protected": true`, requiring a pull request
+   with 1 approval before merging and dismissing stale approvals on new commits,
+   with direct pushes and force pushes blocked and "Lock branch" off (so reviewed
+   merges still work). Administrators are not forced to bypass, so the owner can
+   still act deliberately while the automated bot cannot push or self-merge to
+   production. This turns the `vercel.json` soft lock into an enforced gate:
+   nobody can flip the lock and push to the production branch unreviewed.
 
-1. **GitHub → Settings → Branches → branch protection** on the production
-   branch: require a pull request + review before merge, and disallow direct
-   pushes. This stops anyone from flipping `vercel.json` and pushing to
-   production unreviewed.
-2. **Confirm/convention: set the Vercel Production Branch to `main`** (Vercel →
+### Optional further hardening (owner only)
+
+2. **Convention: set the Vercel Production Branch to `main`** (Vercel →
    Project → Settings → Git). Today production history comes from the legacy
    `claude/hope-love-foundation-site-849qv6` branch; moving it to `main` and
    keeping `main` protected is cleaner. Keep both branches in
