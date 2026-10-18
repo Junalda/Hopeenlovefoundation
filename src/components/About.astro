@@ -1,0 +1,138 @@
+---
+// "Over ons" — who the foundation is, how it helps, and the founder's
+// motivation (confirmed quote from Esther Macnack). Factual, no over-claims.
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const a = useTranslations(lang).about;
+---
+
+<section class="about section" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <div class="head center">
+      <p class="eyebrow center reveal">{a.eyebrow}</p>
+      <h2 class="section-title reveal" id="about-title" style="--reveal-delay:60ms">
+        {a.title}
+      </h2>
+      <p class="about__founded reveal" style="--reveal-delay:100ms">{a.founded}</p>
+      <p class="lead reveal" style="--reveal-delay:140ms">{a.lead}</p>
+    </div>
+
+    <figure class="about__quote reveal">
+      <blockquote>{a.quote}</blockquote>
+      <figcaption>
+        <span class="about__quote-name">{a.quoteAuthor}</span>
+        <span class="about__quote-role">{a.quoteRole}</span>
+      </figcaption>
+    </figure>
+
+    <h3 class="about__how-title reveal">{a.howTitle}</h3>
+    <div class="about__how">
+      {
+        a.how.map((item, i) => (
+          <article class="about__card reveal" style={`--reveal-delay:${i * 70}ms`}>
+            <h4 class="about__card-title">{item.title}</h4>
+            <p class="about__card-body">{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="about__area reveal">{a.area}</p>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--bg);
+  }
+  .about__founded {
+    margin-top: 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+  }
+
+  .about__quote {
+    max-width: 820px;
+    margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, #fff, var(--bg-soft));
+    box-shadow: var(--shadow-md);
+  }
+  .about__quote blockquote {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 1.9vw, 1.35rem);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .about__quote figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-top: 1.2rem;
+  }
+  .about__quote-name {
+    font-weight: 700;
+    color: var(--purple);
+  }
+  .about__quote-role {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .about__how-title {
+    margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+    text-align: center;
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  }
+  .about__how {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.9rem, 2vw, 1.3rem);
+    margin-top: clamp(1.4rem, 3vw, 2rem);
+  }
+  .about__card {
+    padding: clamp(1.3rem, 2.5vw, 1.7rem);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
+      border-color 0.4s var(--ease);
+  }
+  .about__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(138, 43, 136, 0.18);
+  }
+  .about__card-title {
+    font-size: 1.1rem;
+    color: var(--purple);
+  }
+  .about__card-body {
+    margin-top: 0.4rem;
+    font-size: 0.94rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+
+  .about__area {
+    max-width: 760px;
+    margin: clamp(2rem, 4vw, 2.8rem) auto 0;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 760px) {
+    .about__how {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

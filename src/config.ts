@@ -15,6 +15,9 @@ export const site = {
   slogan: 'Bringers of hope, carriers of love.',
   url: 'https://www.hopelovefoundation.nl',
   kvk: '42012653', // Dutch Chamber of Commerce (KvK) registration number
+  // Founded March 2026 (exact day not supplied). Schema.org foundingDate only
+  // accepts a valid date; "2026-03" (YYYY-MM) is a supported partial date.
+  foundingDate: '2026-03',
   description:
     'Hope & Love Foundation helps children discover their identity, build self-worth and experience hope, love and meaningful connection.',
 };

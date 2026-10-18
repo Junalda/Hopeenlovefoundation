@@ -1,0 +1,94 @@
+---
+// Compact FAQ. Questions/answers mirror the FAQPage JSON-LD in Layout.astro.
+// Uses native <details> so every answer stays in the HTML for crawlers.
+import { useTranslations, type Lang } from "../i18n/ui";
+const { lang = "nl" } = Astro.props as { lang?: Lang };
+const f = useTranslations(lang).faq;
+---
+
+<section class="faq section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="head center">
+      <p class="eyebrow center reveal">{f.eyebrow}</p>
+      <h2 class="section-title reveal" id="faq-title" style="--reveal-delay:60ms">
+        {f.title}
+      </h2>
+    </div>
+
+    <div class="faq__list">
+      {
+        f.items.map((item, i) => (
+          <details class="faq__item reveal" style={`--reveal-delay:${i * 50}ms`}>
+            <summary class="faq__q">
+              <span>{item.q}</span>
+              <svg class="faq__chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p class="faq__a">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--bg);
+  }
+  .faq__list {
+    max-width: 760px;
+    margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .faq__item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .faq__item[open] {
+    border-color: rgba(138, 43, 136, 0.2);
+    box-shadow: var(--shadow-md);
+  }
+  .faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: clamp(1rem, 2.2vw, 1.3rem) clamp(1.1rem, 2.4vw, 1.5rem);
+    font-weight: 650;
+    font-size: 1.02rem;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq__q::-webkit-details-marker {
+    display: none;
+  }
+  .faq__chev {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    color: var(--purple);
+    transition: transform 0.3s var(--ease);
+  }
+  .faq__item[open] .faq__chev {
+    transform: rotate(180deg);
+  }
+  .faq__a {
+    margin: 0;
+    padding: 0 clamp(1.1rem, 2.4vw, 1.5rem) clamp(1.1rem, 2.4vw, 1.4rem);
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq__chev {
+      transition: none;
+    }
+  }
+</style>

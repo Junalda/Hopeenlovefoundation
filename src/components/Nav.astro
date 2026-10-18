@@ -4,6 +4,7 @@ const { lang = "nl" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 const links = [
   { href: "#mission", label: t.nav.mission },
+  { href: "#about", label: t.nav.about },
   { href: "#next-mission", label: t.nav.nextMission },
   { href: "#leadership", label: t.nav.leadership },
   { href: "#media", label: t.nav.media },

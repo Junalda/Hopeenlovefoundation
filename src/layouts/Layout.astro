@@ -48,6 +48,7 @@ const organization = {
   image: ogImage,
   email: contact.email,
   telephone: phone,
+  foundingDate: site.foundingDate,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Beneluxlaan 668",
@@ -55,7 +56,8 @@ const organization = {
     addressLocality: "Almere",
     addressCountry: "NL",
   },
-  areaServed: ["Curaçao", "Aruba", "Bonaire", "Suriname", "Netherlands"],
+  // Intended area of work (not a claim of executed projects in each place).
+  areaServed: ["Caribbean", "Suriname", "South America", "Netherlands"],
   founder: { "@type": "Person", name: founder.name },
   member: members,
   sameAs: [contact.social.instagram, contact.social.facebook, contact.social.linkedin].filter(
@@ -84,9 +86,21 @@ const event = {
   image: ogImage,
 };
 
+// FAQ structured data — mirrors the visible FAQ section (same questions/answers).
+const faqPage = {
+  "@type": "FAQPage",
+  "@id": abs("#faq"),
+  inLanguage: lang,
+  mainEntity: t.faq.items.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [organization, event],
+  "@graph": [organization, event, faqPage],
 };
 ---
 

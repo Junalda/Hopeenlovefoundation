@@ -4,8 +4,10 @@ import Nav from "./Nav.astro";
 import Hero from "./Hero.astro";
 import Pillars from "./Pillars.astro";
 import Mission from "./Mission.astro";
+import About from "./About.astro";
 import Media from "./Media.astro";
 import Faith from "./Faith.astro";
+import Faq from "./Faq.astro";
 import NextMission from "./NextMission.astro";
 import Donate from "./Donate.astro";
 import Support from "./Support.astro";
@@ -25,6 +27,7 @@ const { lang = "nl" } = Astro.props as { lang?: Lang };
     <Hero lang={lang} />
     <Pillars lang={lang} />
     <Mission lang={lang} />
+    <About lang={lang} />
     <Faith lang={lang} />
     <NextMission lang={lang} />
     <Donate lang={lang} />
@@ -32,6 +35,7 @@ const { lang = "nl" } = Astro.props as { lang?: Lang };
     <Leadership lang={lang} />
     <Media lang={lang} />
     <Transparency lang={lang} />
+    <Faq lang={lang} />
     <Contact lang={lang} />
     <FinalCTA lang={lang} />
   </main>

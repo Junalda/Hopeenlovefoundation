@@ -40,6 +40,7 @@ export const ui = {
     },
     nav: {
       mission: "Missie",
+      about: "Over ons",
       story: "Ons verhaal",
       media: "In de media",
       nextMission: "Volgende missie",
@@ -82,6 +83,23 @@ export const ui = {
         { title: "Ouder & kind", body: "De gezinsband versterken en herstellen." },
         { title: "Educatie", body: "Leren, nieuwsgierigheid en groei aanmoedigen." },
       ],
+    },
+    about: {
+      eyebrow: "Over ons",
+      title: "Over Hope & Love Foundation",
+      founded: "Opgericht in maart 2026 · gevestigd in Almere",
+      lead: "Stichting Hope & Love Foundation zet zich in voor kinderen en gezinnen die opgroeien in armoede en moeilijke omstandigheden. Vanuit een christelijke overtuiging willen we kinderen laten ervaren dat ze gezien, geliefd en waardevol zijn.",
+      quote:
+        "Ik ben Stichting Hope & Love Foundation begonnen vanuit een diep verlangen om hoop en liefde te brengen aan kinderen en gezinnen die opgroeien in armoede en moeilijke omstandigheden. Vanuit mijn geloof in Jezus Christus wil ik kinderen laten ontdekken dat ze gezien, geliefd en waardevol zijn. Met de stichting wil ik door educatie, praktische hulp en persoonlijke aandacht een blijvend verschil maken in hun leven.",
+      quoteAuthor: "Esther Macnack",
+      quoteRole: "Oprichter",
+      howTitle: "Hoe we onze missie waarmaken",
+      how: [
+        { title: "Educatie", body: "Leren, nieuwsgierigheid en groei aanmoedigen, zodat kinderen hun talenten ontdekken." },
+        { title: "Praktische hulp", body: "Concrete steun voor kinderen en gezinnen, van een warme maaltijd tot materiaal." },
+        { title: "Persoonlijke aandacht", body: "Oprechte aandacht waarin elk kind zich gezien en gewaardeerd voelt." },
+      ],
+      area: "Hope & Love Foundation wil hoop en liefde brengen aan kinderen op de Caribische eilanden, in Suriname, Zuid-Amerika en Nederland. De eerste pilotmissie staat gepland op Curaçao in oktober 2026.",
     },
     story: {
       eyebrow: "Ons verhaal",
@@ -201,6 +219,18 @@ export const ui = {
         { title: "Stichtingsinformatie", desc: "Rechtsvorm, bestuur en governance." },
       ],
     },
+    faq: {
+      eyebrow: "Veelgestelde vragen",
+      title: "Vragen over de stichting",
+      items: [
+        { q: "Wat is Stichting Hope & Love Foundation?", a: "Hope & Love Foundation is een Nederlandse stichting, opgericht in maart 2026 en gevestigd in Almere. We geven kinderen in kwetsbare situaties hoop, eigenwaarde en verbinding, vanuit een christelijke overtuiging." },
+        { q: "Voor wie zet de stichting zich in?", a: "We zijn er voor kinderen en gezinnen die opgroeien in armoede, gebroken gezinnen en moeilijke omstandigheden." },
+        { q: "Wat is de missie van Hope & Love Foundation?", a: "We willen elk kind laten ervaren dat het gezien, gewaardeerd en geliefd is, en zo hun identiteit, eigenwaarde en hoop versterken." },
+        { q: "Hoe helpt de stichting kinderen?", a: "Door educatie, praktische hulp en persoonlijke aandacht, met workshops, sport en spel, creativiteit, een warme maaltijd en aandacht voor de band tussen ouder en kind." },
+        { q: "In welke gebieden wil de stichting actief zijn?", a: "Het beoogde werkgebied omvat de Caribische eilanden, Suriname, Zuid-Amerika en Nederland. De eerste pilotmissie staat gepland op Curaçao in oktober 2026." },
+        { q: "Hoe kan ik de stichting steunen?", a: "Je kunt online doneren via GoFundMe of rechtstreeks via een bankoverschrijving aan de stichting. Wil je meedenken of samenwerken, neem dan contact met ons op." },
+      ],
+    },
     contact: {
       eyebrow: "Contact",
       title: "Laten we samen meer hoop creëren.",
@@ -219,7 +249,7 @@ export const ui = {
       donate: "Doneer nu",
     },
     footer: {
-      nav: ["Missie", "Volgende missie", "Bestuur", "In de media", "Doneren", "Contact"],
+      nav: ["Missie", "Over ons", "Volgende missie", "Bestuur", "In de media", "FAQ", "Doneren", "Contact"],
       donate: "Doneer nu",
       rights: "Alle rechten voorbehouden.",
       verse: "“De meeste van deze is de liefde.” · 1 Korintiërs 13:13",
@@ -240,6 +270,7 @@ export const ui = {
     },
     nav: {
       mission: "Mission",
+      about: "About",
       story: "Our Story",
       media: "In the media",
       nextMission: "Next Mission",
@@ -282,6 +313,23 @@ export const ui = {
         { title: "Parent & child", body: "Strengthening and restoring the family bond." },
         { title: "Education", body: "Encouraging learning, curiosity and growth." },
       ],
+    },
+    about: {
+      eyebrow: "About us",
+      title: "About Hope & Love Foundation",
+      founded: "Founded in March 2026 · based in Almere",
+      lead: "Hope & Love Foundation supports children and families growing up in poverty and difficult circumstances. Rooted in a Christian conviction, we want every child to experience that they are seen, loved and valuable.",
+      quote:
+        "I started Stichting Hope & Love Foundation out of a deep desire to bring hope and love to children and families growing up in poverty and difficult circumstances. Out of my faith in Jesus Christ, I want children to discover that they are seen, loved and valuable. Through education, practical help and personal attention, I want the foundation to make a lasting difference in their lives.",
+      quoteAuthor: "Esther Macnack",
+      quoteRole: "Founder",
+      howTitle: "How we carry out our mission",
+      how: [
+        { title: "Education", body: "Encouraging learning, curiosity and growth so children discover their talents." },
+        { title: "Practical help", body: "Tangible support for children and families, from a warm meal to materials." },
+        { title: "Personal attention", body: "Genuine attention in which every child feels seen and valued." },
+      ],
+      area: "Hope & Love Foundation aims to bring hope and love to children across the Caribbean islands, Suriname, South America and the Netherlands. The first pilot mission is planned for Curaçao in October 2026.",
     },
     story: {
       eyebrow: "Our Story",
@@ -401,6 +449,18 @@ export const ui = {
         { title: "Foundation Information", desc: "Legal name, board and governance." },
       ],
     },
+    faq: {
+      eyebrow: "Frequently asked questions",
+      title: "Questions about the foundation",
+      items: [
+        { q: "What is Hope & Love Foundation?", a: "Hope & Love Foundation is a Dutch foundation (stichting), founded in March 2026 and based in Almere. We give children in vulnerable situations hope, self-worth and connection, rooted in a Christian conviction." },
+        { q: "Who does the foundation support?", a: "We are here for children and families growing up in poverty, broken families and difficult circumstances." },
+        { q: "What is the mission of Hope & Love Foundation?", a: "We want every child to experience that they are seen, valued and loved, strengthening their identity, self-worth and hope." },
+        { q: "How does the foundation help children?", a: "Through education, practical help and personal attention, with workshops, sports and games, creativity, a warm meal and care for the bond between parent and child." },
+        { q: "Where does the foundation aim to be active?", a: "Its intended area of work spans the Caribbean islands, Suriname, South America and the Netherlands. The first pilot mission is planned for Curaçao in October 2026." },
+        { q: "How can I support the foundation?", a: "You can donate online through GoFundMe or directly via bank transfer to the foundation. If you’d like to collaborate or contribute, please get in touch." },
+      ],
+    },
     contact: {
       eyebrow: "Contact",
       title: "Let’s create more hope together.",
@@ -419,7 +479,7 @@ export const ui = {
       donate: "Donate Now",
     },
     footer: {
-      nav: ["Mission", "Next Mission", "Leadership", "In the media", "Donate", "Contact"],
+      nav: ["Mission", "About", "Next Mission", "Leadership", "In the media", "FAQ", "Donate", "Contact"],
       donate: "Donate Now",
       rights: "All rights reserved.",
       verse: "“The greatest of these is love.” · 1 Corinthians 13:13",
