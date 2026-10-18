@@ -92,9 +92,16 @@ not a parameter.
 ## Staging is not indexed
 
 `vercel.json` adds `X-Robots-Tag: noindex, nofollow` for every `*.vercel.app`
-host (staging previews **and** the production `.vercel.app` alias). The custom
-`.nl` domains are **not** matched, so the live site stays fully indexable.
-Preview SSO protection is a second layer on top of this.
+host (staging previews **and** the production `.vercel.app` alias) **and** for
+the custom staging domain `staging.hopelovefoundation.nl`. The production `.nl`
+domains (`www.hopelovefoundation.nl`, `hopelovefoundation.nl`) are **not**
+matched, so the live site stays fully indexable.
+
+> If a custom staging domain is attached to the Preview environment, it is
+> publicly reachable (Deployment Protection excludes custom domains), so this
+> `noindex` header is what keeps staging out of search. If you add a *different*
+> staging hostname, add it to this header list too. Preview SSO protection still
+> covers the `*.vercel.app` preview URLs.
 
 ## Make the gate enforceable (remaining one-time setup — owner only)
 

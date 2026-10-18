@@ -11,6 +11,11 @@
       "source": "/(.*)",
       "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "staging\\.hopelovefoundation\\.nl" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
 }
